@@ -1,0 +1,71 @@
+.pullquote-right:before,
+.pullquote-left:before {
+  /* Reset metrics. */
+  padding: 0;
+  border: none;
+
+  /* Content */
+  content: attr(data-pullquote);
+
+  /* Pull out to the right, modular scale based margins. */
+  float: right;
+  width: 45%;
+  margin: .5em 0 1em 1.5em;
+
+  /* Baseline correction */
+  position: relative;
+  top: 7px;
+  font-size: 1.4em;
+  line-height: 1.45em;
+
+  color: $quote-color;
+  font-family: "Quicksand";
+}
+
+.pullquote-left:before {
+  /* Make left pullquotes align properly. */
+  float: left;
+  margin: .5em 1.5em 1em 0;
+}
+
+/* @extend this to force long lines of continuous text to wrap */
+.force-wrap {
+  white-space: -moz-pre-wrap;
+  white-space: -pre-wrap;
+  white-space: -o-pre-wrap;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+article blockquote {
+  font-style: italic;
+  position: relative;
+  font-size: 1.2em;
+  line-height: 1.5em;
+  padding-left: 1em;
+  color: $quote-color;
+  font-family: "Quicksand";
+  border-left: 4px solid rgba($secondary-color, .5);
+  cite {
+    font-size: 1.1em;
+    font-style: italic;
+    &:before { content: '\2014'; padding:{right: .3em; left: .3em;}; }
+  }
+  @media only screen and (min-width: 992px) {
+    padding-left: 1.5em;
+    border-left-width: 4px;
+  }
+  p:before {
+    font-size: 30px;
+    padding-right: 0.15em;
+    color: #bdc1c5;
+    content: "“";
+
+  }
+  p:after {
+    font-size: 30px;
+    padding-left: 0.15em;
+    color: #bdc1c5;
+    content: "”";
+  }
+}

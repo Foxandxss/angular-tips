@@ -1,0 +1,18 @@
+{% capture root_url %}{{ site.root | strip_slash }}{% endcapture %}
+{% include head.html %}
+<body>
+  <div id="navigation">
+    <nav role="navigation">{% include navigation.html %}</nav>
+  </div>
+  <header role="banner">{% include header.html %}</header>
+  <div id="body" {% if page.sidebar == false %} class="no-sidebar" {% endif %} {% if page.sidebar == 'collapse' or site.sidebar == 'collapse' %} class="collapse-sidebar sidebar-footer" {% endif %}>
+    <div id="main">
+      <div id="content">
+        {{ content | expand_urls: root_url }}
+      </div>
+    </div>
+    <footer role="contentinfo">{% include footer.html %}</footer>
+    {% include after_footer.html %}
+  </div>
+</body>
+</html>
