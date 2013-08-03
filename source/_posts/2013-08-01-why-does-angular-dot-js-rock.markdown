@@ -138,7 +138,7 @@ app.controller('MainCtrl', function($scope) {
 </div>
 ***
 
-If we look into the controller, we can see how we attached to the `$scope` a function. That function will attach a message to the `$scope` as the result of a concatenation of a string and the content that was binded to our input `$scope.user.name`
+If we look into the controller, we can see how we attached to the `$scope` a function. That function will attach a message to the `$scope` as the result of a concatenation of a string and the content that was bound to our input `$scope.user.name`
 
 Then in the HTML we created a button and we used `ng-click` directive. In short this directive makes the element clickable so upon a click it will execute the function that we assigned to it `greet()`.
 
@@ -313,7 +313,7 @@ Going back to our greet example, we had this:
 
 It works great but what if we want the input to have the focus when the page loads? jQuery right? We grab the input and we call the `focus()` method in it. **NO**.
 
-With directives we wan't our HTML to be as self-descriptive as possible so we are going to create a `focus` directive.
+With directives we want our HTML to be as self-descriptive as possible so we are going to create a `focus` directive.
 
 ```javascript focus.js
 app.directive('focus', function() {
@@ -502,7 +502,7 @@ Is a way more simple (Again using the same controller as before with the list of
 
 Wow! That is awesome. We only needed a filter!
 
-With the `filter` filter, you only need to pass a parameter which will contain the filter itself. In this case, we pass `search` which is binded to our scope and it is populated by our input.
+With the `filter` filter, you only need to pass a parameter which will contain the filter itself. In this case, we pass `search` which is bound to our scope and it is populated by our input.
 
 If you want, you can make the filter more precisely, you can do something like this:
 
@@ -519,7 +519,7 @@ If you want, you can make the filter more precisely, you can do something like t
 ```
 </div>
 
-With this (notice how we are binding to `search.name` in the input) we are now filtering just by name. The filter parameter doesn't change. It is binded to the `search` object and it will find there a name populated with by our input and then filter by name.
+With this (notice how we are binding to `search.name` in the input) we are now filtering just by name. The filter parameter doesn't change. It is bound to the `search` object and it will find there a name populated with by our input and then filter by name.
 
 I hope you're excited with this too :)
 
@@ -602,7 +602,7 @@ app.controller('SecondCtrl', function($scope) {
 ***
 {% endraw %}
 
-Well, since you have your inputs binded to the same model, you expect that writing in a box, will update the other one. Like this:
+Well, since you have your inputs bound to the same model, you expect that writing in a box, will update the other one. Like this:
 
 {% img /images/angularrocks/diag5.jpg %}
 
@@ -624,7 +624,7 @@ app.factory('UserInformation', function() {
 
 We used the `factory` function of our app module to create a service. There are other advanced ways to create services (using the `service` and `provider` functions, but that belongs to another post).
 
-There are several ways to create a service, we are creating a private `user` object with a predefined name and then we are returning it.
+There are several ways to create a service, and in this case, we are creating a private `user` object with a predefined name and then we are returning it.
 
 Good, how can I use this in our controllers? Like this:
 
@@ -657,7 +657,7 @@ Since the service is a singleton, if we update it from one controller, the other
 
 Angular uses `dependency injection` to inject the services where we need them. Explaining how the `dependency injection` works is not a subject for this article. But in plain words, when we create a service, we can inject it in any controller, directive or even in another service. How? Just passing as a parameter the name of the service.
 
-You're maybe wondering if this is the same for `$scope`. Well, $scope is maybe one of the exceptions that is not really a service that is injected into our controllers.
+You're maybe wondering if this is the same for `$scope`. Well, `$scope` is maybe one of the exceptions that is not really a service that is injected into our controllers.
 
 ## Conclusions
 
