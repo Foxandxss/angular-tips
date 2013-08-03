@@ -592,11 +592,11 @@ app.controller('SecondCtrl', function($scope) {
 
 <div ng-controller="MainCtrl">
   MainCtrl:
-  <input type="text" ng-model="user.nameb">
+  <input type="text" ng-model="user.namey">
 </div>
 <div ng-controller="SecondCtrl">
   SecondCtrl:
-  <input type="text" ng-model="user.nameb">
+  <input type="text" ng-model="user.namez">
 </div>
 
 ***
