@@ -118,7 +118,7 @@ In this case, when `b` is assigned to `obj`, we are assigning the reference of `
 
 Notice that our service returns an object, so if we can assign it to our `$scope`, then we can update the service without fear. Let's see:
 
-```javascript auth.js
+```javascript mainctrl.js
 app.controller('MainCtrl', function($scope, Auth) {
   $scope.auth = Auth;
 });
@@ -152,4 +152,55 @@ Now it works! And in my humble opinion, it makes more sense to have a reference 
 
 Here we see how `MainCtrl` consumes the service and `loggedIn` has a reference to the `Auth` service.
 
-And last but not least, I want to thank [PigDude](https://oinksoft.com/) because it was he who gave the solution with awesome examples and explanations. Saying this, I highly recommend all of you to join us in #angularjs at Freenode. And remember, the blog is on [github](https://github.com/Foxandxss/angular-tips) so you can send your pull requests :).
+Having this in mind, this is just one way to consume your services. You can like it, or maybe not. That is not a problem because Angular is not opinionated in this things so depending on your use case, you would need to consume it in different ways.
+
+One of the drawback of this way is that you're giving the view much knowledge about your service. That can be non desired in certain cases. On the other hand, you would need to do some things in the controller when you login or logout. In both cases, you could rewrite your code like this:
+
+```javascript auth.js
+app.service('Auth', function() {
+  var loggedIn = false; // this is private
+  
+  return {
+    login: function() {
+      loggedIn = true;
+    },
+    logout: function() {
+      loggedIn = false;
+    },
+    isAuthenticated: function() {
+      return loggedIn;
+    }
+  };
+});
+```
+
+```javascript mainctrl.js
+app.controller('MainCtrl', function($scope, Auth) {
+  $scope.isAuth = Auth.isAuthenticated;
+  $scope.login = function() {
+    // Do things before login
+    Auth.login();
+    // Do extra things after login
+  };
+  $scope.logout = Auth.logout; // No need for extra things
+});
+```
+
+```html index.html
+<body ng-controller="MainCtrl">
+  <div ng-switch="isAuth()">
+    <span ng-switch-when="false">Hello Guest!</span>
+    <span ng-switch-when="true">Welcome back User</span>
+  </div>
+  <button ng-click="login()">Login</button>
+  <button ng-click="logout()">Logout</button>
+</body>
+```
+
+Now the view doesn't have any knowledge of the service.
+
+As you can see, we can assign to our scope the functions we have in the service as we did with `isAuth` and `logout` or create a function that will do extra things plus the call to the `login` method of the service.
+
+Even when this is a matter of personal design decisions, I think that there is use case for both solution.
+
+And last but not least, I want to thank [PigDude](https://oinksoft.com/) because it was he who gave the solution with awesome examples and explanations and all the users of `Hacker news` which were kind to point some issues that had to be fixed. Saying this, I highly recommend all of you to join us in #angularjs at Freenode. And remember, the blog is on [github](https://github.com/Foxandxss/angular-tips) so you can send your pull requests :).

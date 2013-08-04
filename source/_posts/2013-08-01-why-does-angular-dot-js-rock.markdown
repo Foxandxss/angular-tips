@@ -638,6 +638,10 @@ app.controller('SecondCtrl', function($scope, UserInformation) {
 });
 ```
 
+With this we get something like:
+
+{% img /images/angularrocks/diag7.jpg %}
+
 ## Try it
 
 <div ng-controller="MainCtrl">
@@ -653,7 +657,7 @@ app.controller('SecondCtrl', function($scope, UserInformation) {
 
 Well this seems to work.
 
-Since the service is a singleton, if we update it from one controller, the other will be updated too. So your question now is. Where the `UserInformation` parameter comes from?
+Now our `$scope.user` in both `MainCtrl` and `SecondCtrl` is using `UserInformation` and since the service is a singleton, if we update it from one controller, the other will be updated too. So your question now is. Where the `UserInformation` parameter comes from?
 
 Angular uses `dependency injection` to inject the services where we need them. Explaining how the `dependency injection` works is not a subject for this article. But in plain words, when we create a service, we can inject it in any controller, directive or even in another service. How? Just passing as a parameter the name of the service.
 
