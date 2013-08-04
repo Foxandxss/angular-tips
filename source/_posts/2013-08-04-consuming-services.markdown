@@ -152,4 +152,4 @@ Now it works! And in my humble opinion, it makes more sense to have a reference 
 
 Here we see how `MainCtrl` consumes the service and `loggedIn` has a reference to the `Auth` service.
 
-And last but not least, I want to thank [PigDude](https://oinksoft.com/) because it was him who gave the solution with awesome examples and explanations. Saying this, I highly recommend all of you to join us in #angularjs at Freenode. And remember, the blog is on [github](https://github.com/Foxandxss/angular-tips) so you can send your pull requests :).
+And last but not least, I want to thank [PigDude](https://oinksoft.com/) because it was he who gave the solution with awesome examples and explanations. Saying this, I highly recommend all of you to join us in #angularjs at Freenode. And remember, the blog is on [github](https://github.com/Foxandxss/angular-tips) so you can send your pull requests :).
