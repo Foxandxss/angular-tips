@@ -6,7 +6,7 @@ comments: true
 categories: services
 ---
 
-Even when this sounds like something easy to do, 1 out of 3 questions we get on #angularjs (Irc channel in freenode) are about the same problem and that is what I am going to cover in this article.
+Even when this sounds like something easy to do, 1 out of 3 questions we get on #angularjs (IRC channel at Freenode) are about the same problem and that is what I am going to cover in this article.
 
 Let's write a dummy service for authentication (I promise an article about real auth services in the near future :P):
 
@@ -78,7 +78,7 @@ Uhm, no matter how many times I click on the login button, nothing happens. That
 
 The problem doesn't lie in Angular, this is a common misunderstanding of how Javascript works.
 
-This is how some people thinks this is working:
+This is how some people think this is working:
 
 {% img /images/consumingservices/diag1.jpeg %}
 
@@ -95,7 +95,7 @@ a = 20;
 console.log(b); // 10
 ```
 
-What happen here? We created two variables, `a` with the value of `10` and `b`. Ee assign the **value** of `a` to `b` **not a reference**, so what `b` has is a copy of the value of `a`. Then if we assign a different value to `a`, `b` won't change because what `b` contains is a primitive with the value of `10`.
+What has happened here? We created two variables, `a` with the value of `10` and `b`. We assign the **value** of `a` to `b` **not a reference**, so what `b` has is a copy of the value of `a`. Then if we assign a different value to `a`, `b` won't change because what `b` contains is a primitive with the value of `10`.
 
 So when we did:
 
@@ -103,7 +103,7 @@ So when we did:
 $scope.loggedIn = Auth.loggedIn;
 ```
 
-What we did was just **copying** the value of `Auth.loggedIn` in other words `false` to `$scope.loggedIn` so if the `Auth` service updates, and with our current implementation, we won't notice it.
+What we did was just **copying** the value of `Auth.loggedIn`, aka `false`, to `$scope.loggedIn`, so if the `Auth` service updates, and with our current implementation, we won't notice it.
 
 Let's see another example:
 
@@ -114,9 +114,9 @@ obj["baz"] = "baz";
 console.log(b); // Object {foo: "foo", bar: "bar", baz: "baz"}
 ```
 
-In this case, when `b` is assigned to `obj`, we are assigning the reference of `obj` so if `obj` is changed, `b` will be changed too (And viceversa). This is how we want to use our services.
+In this case, when `b` is assigned to `obj`, we are assigning the reference of `obj`, so if `obj` is changed, `b` will be changed too (and viceversa). This is how we want to use our services.
 
-Notice that our service returns an object so if we can assign it to our `$scope`, then we can update the service without fear. Let's see:
+Notice that our service returns an object, so if we can assign it to our `$scope`, then we can update the service without fear. Let's see:
 
 ```javascript auth.js
 app.controller('MainCtrl', function($scope, Auth) {
@@ -146,10 +146,10 @@ See it by yourself:
 
 ***
 
-Now it works! And in my humble opinion, makes more sense to have a reference to the service just once instead of having your service replicated again in the controller.
+Now it works! And in my humble opinion, it makes more sense to have a reference to the service just once instead of having your service replicated again in the controller.
 
 {% img /images/consumingservices/diag3.jpg %}
 
 Here we see how `MainCtrl` consumes the service and `loggedIn` has a reference to the `Auth` service.
 
-And last but not least, I want to thanks [PigDude](https://oinksoft.com/) because was him who gave the solution with awesome examples and explanations. Saying this, I highly recommend all of you to join us in #angularjs at Freenode. And remember, the blog is on [github](https://github.com/Foxandxss/angular-tips) so you can send your pull requests :)
+And last but not least, I want to thank [PigDude](https://oinksoft.com/) because it was him who gave the solution with awesome examples and explanations. Saying this, I highly recommend all of you to join us in #angularjs at Freenode. And remember, the blog is on [github](https://github.com/Foxandxss/angular-tips) so you can send your pull requests :).
