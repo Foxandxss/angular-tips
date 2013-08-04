@@ -152,9 +152,9 @@ Now it works! And in my humble opinion, it makes more sense to have a reference 
 
 Here we see how `MainCtrl` consumes the service and `loggedIn` has a reference to the `Auth` service.
 
-Having this in mind, this is just one way to consume your services. You can like it, or maybe not. That is not a problem because Angular is not opinionated in this things so depending on your use case, you would need to consume it in different ways.
+Having this in mind, this is just one way to consume your services. You may like it, or maybe not. That is not a problem because Angular is not opinionated in these things, so depending on your use case, you could need to consume it in different ways.
 
-One of the drawback of this way is that you're giving the view much knowledge about your service. That can be non desired in certain cases. On the other hand, you would need to do some things in the controller when you login or logout. In both cases, you could rewrite your code like this:
+One of the drawbacks of this way is that you're giving the view much knowledge about your service. That can be non desired in certain cases. On the other hand, you would need to do some things in the controller when you login or logout. In both cases, you could rewrite your code like this:
 
 ```javascript auth.js
 app.service('Auth', function() {
@@ -201,6 +201,6 @@ Now the view doesn't have any knowledge of the service.
 
 As you can see, we can assign to our scope the functions we have in the service as we did with `isAuth` and `logout` or create a function that will do extra things plus the call to the `login` method of the service.
 
-Even when this is a matter of personal design decisions, I think that there is use case for both solution.
+Even when this is a matter of personal design decisions, I think that there are use cases for both solutions.
 
-And last but not least, I want to thank [PigDude](https://oinksoft.com/) because it was he who gave the solution with awesome examples and explanations and all the users of `Hacker news` which were kind to point some issues that had to be fixed. Saying this, I highly recommend all of you to join us in #angularjs at Freenode. And remember, the blog is on [github](https://github.com/Foxandxss/angular-tips) so you can send your pull requests :).
+And last but not least, I want to thank [PigDude](https://oinksoft.com/) because it was he who gave the solution with awesome examples and explanations, as well as all the users of `Hacker news` who were kind to point some issues that had to be fixed. Having said this, I highly recommend all of you to join us in #angularjs at Freenode. And remember, the blog is on [github](https://github.com/Foxandxss/angular-tips) so you can send your pull requests :).
