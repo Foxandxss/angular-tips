@@ -474,7 +474,7 @@ Ok, this next one will blow your mind.
 
 Imagine that we don't have 4 developers, we have 300 and we want to filter them (by name, country...). So you start planning how to filter your collections, swap the non-filtered one with the filtered...
 
-It is a way more simple (Again using the same controller as before with the list of developers):
+It is a more simple way (Again using the same controller as before with the list of developers):
 
 <div ng-non-bindable>
 ```html
