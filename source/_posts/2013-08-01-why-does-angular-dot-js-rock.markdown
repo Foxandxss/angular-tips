@@ -11,7 +11,7 @@ Let's see if we can discover why :)
 
 Angular.js is a MV* (Model - View - Whatever) Javascript framework which is maintained by Google which excels in the creation of `single-page-applications` or even for adding some "magic" to our classic web applications.
 
-I could spend all the day writing sentences of why you should try Angular.js in your new project, but I feel it that would be better if we see it in action.
+I could spend all the day writing about why you should try Angular.js in your new project, but I feel it that would be better if we see it in action.
 <!-- more -->
 ## Data binding and scopes
 
@@ -327,7 +327,7 @@ app.directive('focus', function() {
 
 So we are calling the *directive* function of our *app* object, this like our controller receives the name of the directive and a function.
 
-Directives is the most complex thing in the entire Angular.js and for the sake of simplicity (this is like a showcase article :P) I won't give excesive details (but I promise several articles on the subject in a future).
+Directives is the most complex thing in the entire Angular.js and for the sake of simplicity (this is like a showcase article :P) I won't give excessive details (but I promise several articles on the subject in a future).
 
 A directive needs to return an object and there we can define some attributes in it, in our case, none. A directive can also return a link function. Is in the link function where we put most of our template logic.
 
@@ -420,7 +420,7 @@ There are 13 phones in the basket. Total: 1232.12
 
 ***
 
-Notice how can we use some basic expressions in the interpolation. In this case we are printing a number. We can read it and realize that we are talking about $1,232.12 but wouldn't be better if we can convert that number into money?
+Notice how can we use some basic expressions in the interpolation. In this case we are printing a number. We can read it and realize that we are talking about $1,232.12 but wouldn't it be better if we can convert that number into money?
 
 Of course, and that is really easy with filters. There is an example of the `currency` filter:
 
@@ -466,7 +466,7 @@ For example, we can specify an order in a `ng-repeat`. Let's try it out with the
 
 We can see here something interesting. We can pass parameters to the filters.
 
-The `orderBy` filters receives a predicate which will use to order. In our case we passed `name` so we will order the list by name. Note that if we put `-name` as the predicate, we will order ir in reverse mode :)
+The `orderBy` filters receives a predicate which will use to order. In our case we passed `name` so we will order the list by name. Note that if we put `-name` as the predicate, we will order it in reverse mode :)
 
 So you are thinking at this moment... Not bad, they can be useful...
 
@@ -504,7 +504,7 @@ Wow! That is awesome. We only needed a filter!
 
 With the `filter` filter, you only need to pass a parameter which will contain the filter itself. In this case, we pass `search` which is bound to our scope and it is populated by our input.
 
-If you want, you can make the filter more precisely, you can do something like this:
+If you want, you can make the filter more precise by doing something like this:
 
 <div ng-non-bindable>
 ```html
@@ -535,7 +535,7 @@ app.filter('capitalize', function() {
 });
 ```
 
-A filter returns a function which receives the input (the result of the interpolation) and the filter parameter. The function returns our new input. In this case it capitalize the input.
+A filter returns a function which receives the input (the result of the interpolation) and the filter parameter. The function returns our new input. In this case it capitalizes the input.
 
 Then, we just need to use it:
 
@@ -559,7 +559,7 @@ And our last section for this article, services. What is a service? They are sin
 
 Instead of splitting our app logic into the controllers, we can put that logic into different services.
 
-Angular has a lot of built-in services, managing `$http` requests, `$q` for promises, etc. But in this part we are not going to talk about any built-in service, because they are more complex to explain and that belongs to a new article. Instead we are going to create a simple one.
+Angular has a lot of built-in services, managing `$http` requests, `$q` for promises, etc. But in this part we are not going to talk about any built-in service, because they are more difficult to explain and that belongs to a new article. Instead we are going to create a simple one.
 
 One of the more common uses for a service is to share information along controllers. Every controller has its own scope so you can't bind to other controller scope. The solution is to use services, so you can have the data in one central place and then use it where you want.
 
@@ -657,7 +657,7 @@ With this we get something like:
 
 Well this seems to work.
 
-Now our `$scope.user` in both `MainCtrl` and `SecondCtrl` is using `UserInformation` and since the service is a singleton, if we update it from one controller, the other will be updated too. So your question now is. Where the `UserInformation` parameter comes from?
+Now our `$scope.user` in both `MainCtrl` and `SecondCtrl` is using `UserInformation` and since the service is a singleton, if we update it from one controller, the other will be updated too. So your question now is: Where does the `UserInformation` parameter come from?
 
 Angular uses `dependency injection` to inject the services where we need them. Explaining how the `dependency injection` works is not a subject for this article. But in plain words, when we create a service, we can inject it in any controller, directive or even in another service. How? Just passing as a parameter the name of the service.
 
