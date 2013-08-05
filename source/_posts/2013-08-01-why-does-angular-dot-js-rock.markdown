@@ -90,7 +90,7 @@ Then we attach a string `message` in our `$scope`.
 
 In our view you will notice that our `body` tags have things in it. What are those? They are `directives`, they teach new tricks to our HTML, and in this case, we are using two of them:
 
-* `ng-app` tells Angular that the body element contains our Angular application, that means that everything inside it will be treated by Angular. Normally you would use it in the `html` tags and from now on, I won't show it anymore. The parameter is the name of our app, so it matches the name we gave to it in the module.
+* `ng-app` tells Angular that the body element contains our Angular application, that means that everything inside it will be treated by Angular. Normally you would use it in the `html` tag. The parameter is the name of our app, so it matches the name we gave to it in the module.
 
 * `ng-controller`: with this directive, we assign as our element's scope that controller. In this case `MainCtrl`.
 
@@ -119,7 +119,7 @@ app.controller('MainCtrl', function($scope) {
 ```
 <div ng-non-bindable>
 ```html index.html
-<body ng-controller="MainCtrl">
+<body ng-app="app" ng-controller="MainCtrl">
   What's your name?:
   <input type="text" ng-model="user.name" />
   <button ng-click="greet()">Click here!</button>
@@ -302,7 +302,7 @@ Going back to our greet example, we had this:
 {% raw %}
 <div ng-non-bindable>
 ```html form.html
-<body ng-controller="MainCtrl">
+<body ng-app="app" ng-controller="MainCtrl">
   What's your name?:
   <input type="text" ng-model="user.name" />
   <button ng-click="greet()">Click here!</button>
@@ -345,7 +345,7 @@ Simple as that. The only thing needed now is to use it. Just put the directive n
 
 <div ng-non-bindable>
 ```html form.html
-<body ng-controller="MainCtrl">
+<body ng-app="app" ng-controller="MainCtrl">
   What's your name?:
   <input type="text" focus ng-model="user.name" />
   <button ng-click="greet()">Click here!</button>
@@ -478,7 +478,7 @@ It is a more simple way (Again using the same controller as before with the list
 
 <div ng-non-bindable>
 ```html
-<body ng-controller="MainCtrl">
+<body ng-app="app" ng-controller="MainCtrl">
   Search: <input ng-model="search" type="text" />
    <ul>
      <li ng-repeat="person in developers | filter:search">
@@ -508,7 +508,7 @@ If you want, you can make the filter more precise by doing something like this:
 
 <div ng-non-bindable>
 ```html
-<body ng-controller="MainCtrl">
+<body ng-app="app" ng-controller="MainCtrl">
   Search: <input ng-model="search.name" type="text" />
    <ul>
      <li ng-repeat="person in developers | filter:search">
