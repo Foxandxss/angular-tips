@@ -11,7 +11,7 @@ Let's see if we can discover why :)
 
 Angular.js is a MV* (Model - View - Whatever) Javascript framework which is maintained by Google which excels in the creation of `single-page-applications` or even for adding some "magic" to our classic web applications.
 
-I could spend all the day writing sentences of why you should try Angular.js in your new project, but I feel it that would be better if we see it in action.
+I could spend all the day writing sentences of why you should try Angular.js in your new project, but I feel that it would be better if we see it in action.
 <!-- more -->
 ## Data binding and scopes
 
@@ -80,7 +80,7 @@ app.controller('MainCtrl', function($scope) {
 Hello, World
 ***
 
-The first thing we are doing here is defining our Angular application. To do that we just create an angular module which receives a name and an array of dependencies (Line 1).
+The first thing we are doing here is defining our Angular application. To do that we just create an Angular module which receives a name and an array of dependencies (Line 1).
 
 With our `app` in place the next thing to do is to create our controller. We do this calling the `controller` method in our `app module`. We give it a name and a function.
 
@@ -88,9 +88,9 @@ The function receives the `$scope` (More on this later) that we are going to use
 
 Then we attach a string `message` in our `$scope`.
 
-In our view you will notice that our `body` tags have things in it. What are those? They are `directives`, they teach new tricks to our html, and in this case, we are using two of them:
+In our view you will notice that our `body` tags have things in it. What are those? They are `directives`, they teach new tricks to our HTML, and in this case, we are using two of them:
 
-* `ng-app` tells angular that the body element contains our Angular application, that means that everything inside it will be treated by Angular. Normally you would use it in the `html` tags and from now on, I won't show it anymore. The parameter is the name of our app, so it matches the name we gave to it in the module.
+* `ng-app` tells Angular that the body element contains our Angular application, that means that everything inside it will be treated by Angular. Normally you would use it in the `html` tags and from now on, I won't show it anymore. The parameter is the name of our app, so it matches the name we gave to it in the module.
 
 * `ng-controller`: with this directive, we assign as our element's scope that controller. In this case `MainCtrl`.
 
@@ -172,7 +172,7 @@ $('#chart').pieChart({ ... });
 
 Aha! So it is the container of a pie chart.
 
-What's the problem? You can't figure out what your page does if you don't look at every javacript file that is attached to it.
+What's the problem? You can't figure out what your page does if you don't look at every Javacript file that is attached to it.
 
 Then look at this code of an Angular app:
 
@@ -209,9 +209,9 @@ Imagine that we have a portion of our page that we want to show only if a certai
  </div>
 ***
 
-With `ng-show` we show the element (and childs) only if the expression, in our case the value of the binding, is true.
+With `ng-show` we show the element (and children) only if the expression, in our case the value of the binding, is true.
 
-Note how we used `ng-click` this time. There is no need of create a function in our controller (we don't even have a controller this time!), we can write an expression as the directive's argument and in this case, we toggle the value of `show`. Which starts `undefined` and is set to true with the first click.
+Note how we used `ng-click` this time. There is no need to create a function in our controller (we don't even have a controller this time!), we can write an expression as the directive's argument and in this case, we toggle the value of `show`. Which starts `undefined` and is set to true with the first click.
 
 We also have `ng-hide` which does the opposite :)
 
@@ -327,9 +327,9 @@ app.directive('focus', function() {
 
 So we are calling the *directive* function of our *app* object, this like our controller receives the name of the directive and a function.
 
-Directives is the most complex thing in the entire Angular.js and for the sake of simplicity (this is like a showcase article :P) I won't give excesive details (but I promise several articles on the subject in a future).
+Directives are the most complex thing in the entire Angular.js and for the sake of simplicity (this is like a showcase article :P) I won't give excessive details (but I promise several articles on the subject in a future).
 
-A directive needs to return an object and there we can define some attributes in it, in our case, none. A directive can also return a link function. Is in the link function where we put most of our template logic.
+A directive needs to return an object and there we can define some attributes in it, in our case, none. A directive can also return a link function. It is in the link function where we put most of our template logic.
 
 We can register DOM listeners here, update our DOM, etc.
 
@@ -354,7 +354,7 @@ Simple as that. The only thing needed now is to use it. Just put the directive n
 ```
 </div>
 
-**NOTE**: There is no `Try it` this time, seems like octopress is grabbing the focus too and my example won't work here.
+**NOTE**: There is no `Try it` this time, it seems like Octopress is grabbing the focus too and my example won't work here.
 
 Fair enough, this directive was really simple.
 
@@ -382,7 +382,7 @@ This one returns the object and in there we set some attributes (as we said earl
 * replace: If we set this to true, our element will be replaced with our new template
 * template: Here we put the template we want to append (or replace as we have seen) into the element.
 
-We are restricting our directive to element (is restricted to attribute by default) and we specifying a template to replace our element.
+We are restricting our directive to element (is restricted to attribute by default) and we are specifying a template to replace our element.
 
 There are a lot more options that we can use in our directives, but these will do the work we need.
 
@@ -420,7 +420,7 @@ There are 13 phones in the basket. Total: 1232.12
 
 ***
 
-Notice how can we use some basic expressions in the interpolation. In this case we are printing a number. We can read it and realize that we are talking about $1,232.12 but wouldn't be better if we can convert that number into money?
+Notice how we can use some basic expressions in the interpolation. In this case we are printing a number. We can read it and realize that we are talking about $1,232.12 but wouldn't it be better if we can convert that number into money?
 
 Of course, and that is really easy with filters. There is an example of the `currency` filter:
 
@@ -438,7 +438,7 @@ There are 13 phones in the basket. Total: $1,232.12
 
 Much better, isn't it?
 
-As you can see, we can use a filter using the `|` character. Is like we do in a Unix environment, piping.
+As you can see, we can use a filter using the `|` character. It is like we do in a Unix environment, piping.
 
 We can pipe one or more filters in a expression.
 
@@ -466,7 +466,7 @@ For example, we can specify an order in a `ng-repeat`. Let's try it out with the
 
 We can see here something interesting. We can pass parameters to the filters.
 
-The `orderBy` filters receives a predicate which will use to order. In our case we passed `name` so we will order the list by name. Note that if we put `-name` as the predicate, we will order ir in reverse mode :)
+The `orderBy` filters receive a predicate which it will use to order. In our case we passed `name` so we will order the list by name. Note that if we put `-name` as the predicate, we will order it in reverse mode :)
 
 So you are thinking at this moment... Not bad, they can be useful...
 
@@ -519,7 +519,7 @@ If you want, you can make the filter more precisely, you can do something like t
 ```
 </div>
 
-With this (notice how we are binding to `search.name` in the input) we are now filtering just by name. The filter parameter doesn't change. It is bound to the `search` object and it will find there a name populated with by our input and then filter by name.
+With this (notice how we are binding to `search.name` in the input) we are now filtering just by name. The filter parameter doesn't change. It is bound to the `search` object and it will find there a name populated with our input and then filtered by name.
 
 I hope you're excited with this too :)
 
@@ -535,7 +535,7 @@ app.filter('capitalize', function() {
 });
 ```
 
-A filter returns a function which receives the input (the result of the interpolation) and the filter parameter. The function returns our new input. In this case it capitalize the input.
+A filter returns a function which receives the input (the result of the interpolation) and the filter parameter. The function returns our new input. In this case it capitalizes the input.
 
 Then, we just need to use it:
 
@@ -555,13 +555,13 @@ We had to wrap our string into quotes to make it a literal string. Then we "pipe
 
 ## Services
 
-And our last section for this article, services. What is a service? They are singleton classes that provides certain functionality to our app.
+And our last section for this article, services. What is a service? They are singleton classes that provide certain functionality to our app.
 
 Instead of splitting our app logic into the controllers, we can put that logic into different services.
 
 Angular has a lot of built-in services, managing `$http` requests, `$q` for promises, etc. But in this part we are not going to talk about any built-in service, because they are more complex to explain and that belongs to a new article. Instead we are going to create a simple one.
 
-One of the more common uses for a service is to share information along controllers. Every controller has its own scope so you can't bind to other controller scope. The solution is to use services, so you can have the data in one central place and then use it where you want.
+One of the more common uses for a service is to share information among controllers. Every controller has its own scope so you can't bind to other controller scope. The solution is to use services, so you can have the data in one central place and then use it where you want.
 
 First, let's try this without the service to see the problem:
 
@@ -657,7 +657,7 @@ With this we get something like:
 
 Well this seems to work.
 
-Now our `$scope.user` in both `MainCtrl` and `SecondCtrl` is using `UserInformation` and since the service is a singleton, if we update it from one controller, the other will be updated too. So your question now is. Where the `UserInformation` parameter comes from?
+Now our `$scope.user` in both `MainCtrl` and `SecondCtrl` is using `UserInformation` and since the service is a singleton, if we update it from one controller, the other will be updated too. So your question now is. Where does the `UserInformation` parameter come from?
 
 Angular uses `dependency injection` to inject the services where we need them. Explaining how the `dependency injection` works is not a subject for this article. But in plain words, when we create a service, we can inject it in any controller, directive or even in another service. How? Just passing as a parameter the name of the service.
 
@@ -669,7 +669,7 @@ With this we end the first (but not the last :)) article of this blog.
 
 Angular.js is a great framework and I think that you are already in love with it. I expect to see you here for the next articles!
 
-Last but not least, I want to thank `Auser` from [ng-newsletter](http://www.ng-newsletter.com/) which told to me how to add this interactivity to my blog.
+Last but not least, I want to thank `Auser` from [ng-newsletter](http://www.ng-newsletter.com/) who told me how to add this interactivity to my blog.
 
 I hope you enjoyed it and I expect your comments :)
 
