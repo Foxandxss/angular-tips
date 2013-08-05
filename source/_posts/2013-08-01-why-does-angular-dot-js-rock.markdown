@@ -11,7 +11,7 @@ Let's see if we can discover why :)
 
 Angular.js is a MV* (Model - View - Whatever) Javascript framework which is maintained by Google which excels in the creation of `single-page-applications` or even for adding some "magic" to our classic web applications.
 
-I could spend all the day writing sentences of why you should try Angular.js in your new project, but I feel that it would be better if we see it in action.
+I could spend all the day writing about why you should try Angular.js in your new project, but I feel that it would be better if we see it in action.
 <!-- more -->
 ## Data binding and scopes
 
@@ -504,7 +504,7 @@ Wow! That is awesome. We only needed a filter!
 
 With the `filter` filter, you only need to pass a parameter which will contain the filter itself. In this case, we pass `search` which is bound to our scope and it is populated by our input.
 
-If you want, you can make the filter more precisely, you can do something like this:
+If you want, you can make the filter more precise by doing something like this:
 
 <div ng-non-bindable>
 ```html
@@ -559,7 +559,7 @@ And our last section for this article, services. What is a service? They are sin
 
 Instead of splitting our app logic into the controllers, we can put that logic into different services.
 
-Angular has a lot of built-in services, managing `$http` requests, `$q` for promises, etc. But in this part we are not going to talk about any built-in service, because they are more complex to explain and that belongs to a new article. Instead we are going to create a simple one.
+Angular has a lot of built-in services, managing `$http` requests, `$q` for promises, etc. But in this part we are not going to talk about any built-in service, because they are more difficult to explain and that belongs to a new article. Instead we are going to create a simple one.
 
 One of the more common uses for a service is to share information among controllers. Every controller has its own scope so you can't bind to other controller scope. The solution is to use services, so you can have the data in one central place and then use it where you want.
 
@@ -657,7 +657,7 @@ With this we get something like:
 
 Well this seems to work.
 
-Now our `$scope.user` in both `MainCtrl` and `SecondCtrl` is using `UserInformation` and since the service is a singleton, if we update it from one controller, the other will be updated too. So your question now is. Where does the `UserInformation` parameter come from?
+Now our `$scope.user` in both `MainCtrl` and `SecondCtrl` is using `UserInformation` and since the service is a singleton, if we update it from one controller, the other will be updated too. So your question now is: Where does the `UserInformation` parameter come from?
 
 Angular uses `dependency injection` to inject the services where we need them. Explaining how the `dependency injection` works is not a subject for this article. But in plain words, when we create a service, we can inject it in any controller, directive or even in another service. How? Just passing as a parameter the name of the service.
 
