@@ -154,7 +154,7 @@ Here we see how `MainCtrl` consumes the service and `loggedIn` has a reference t
 
 Having this in mind, this is just one way to consume your services. You may like it, or maybe not. That is not a problem because Angular is not opinionated in these things, so depending on your use case, you could need to consume it in different ways.
 
-One of the drawbacks of this way is that you're giving the view much knowledge about your service. That can be non desired in certain cases. On the other hand, you would need to do some things in the controller when you login or logout. In both cases, you could rewrite your code like this:
+One of the drawbacks of this way is that you're giving the view knowledge about your service. That can be non desired in certain cases. On the other hand, you would need to do some things in the controller when you login or logout. In both cases, you could rewrite your code like this:
 
 ```javascript auth.js
 app.service('Auth', function() {
