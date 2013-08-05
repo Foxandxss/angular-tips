@@ -472,9 +472,9 @@ So you are thinking at this moment... Not bad, they can be useful...
 
 Ok, this next one will blow your mind.
 
-Imagine that we don't have 4 developers, we have 300 and we want to filter them (by name, country...). So you starts planning how to filter your collections, swap the non-filtered one with the filtered...
+Imagine that we don't have 4 developers, we have 300 and we want to filter them (by name, country...). So you start planning how to filter your collections, swap the non-filtered one with the filtered...
 
-Is a way more simple (Again using the same controller as before with the list of developers):
+It is a way more simple (Again using the same controller as before with the list of developers):
 
 <div ng-non-bindable>
 ```html
@@ -665,11 +665,11 @@ You're maybe wondering if this is the same for `$scope`. Well, `$scope` is maybe
 
 ## Conclusions
 
-With this we end the first article (but not the last :)) article of this blog.
+With this we end the first (but not the last :)) article of this blog.
 
 Angular.js is a great framework and I think that you are already in love with it. I expect to see you here for the next articles!
 
-Last but not least, I want to thanks `Auser` from [ng-newsletter](http://www.ng-newsletter.com/) which told to me how to add this interactivity to my blog.
+Last but not least, I want to thank `Auser` from [ng-newsletter](http://www.ng-newsletter.com/) which told to me how to add this interactivity to my blog.
 
 I hope you enjoyed it and I expect your comments :)
 
