@@ -120,7 +120,7 @@ app.controller('MainCtrl', function($scope) {
 <div ng-non-bindable>
 ```html index.html
 <body ng-controller="MainCtrl">
-  What's is your name?:
+  What's your name?:
   <input type="text" ng-model="user.name" />
   <button ng-click="greet()">Click here!</button>
   <h3>{{ message }}</h3>
@@ -131,7 +131,7 @@ app.controller('MainCtrl', function($scope) {
 ## Try it
 
 <div ng-controller="FuncCtrl">
-  What's is your name?:
+  What's your name?:
   <input type="text" ng-model="user.namee" />
   <button ng-click="greet()">Click here!</button>
   <h3>{{ message }}</h3>  
@@ -303,7 +303,7 @@ Going back to our greet example, we had this:
 <div ng-non-bindable>
 ```html form.html
 <body ng-controller="MainCtrl">
-  What's is your name?:
+  What's your name?:
   <input type="text" ng-model="user.name" />
   <button ng-click="greet()">Click here!</button>
   <h3>{{ message }}</h3>
@@ -346,7 +346,7 @@ Simple as that. The only thing needed now is to use it. Just put the directive n
 <div ng-non-bindable>
 ```html form.html
 <body ng-controller="MainCtrl">
-  What's is your name?:
+  What's your name?:
   <input type="text" focus ng-model="user.name" />
   <button ng-click="greet()">Click here!</button>
   <h3>{{ message }}</h3>
