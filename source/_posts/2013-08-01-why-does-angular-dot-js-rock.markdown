@@ -119,7 +119,7 @@ app.controller('MainCtrl', function($scope) {
 ```
 <div ng-non-bindable>
 ```html index.html
-<body ng-controller="MainCtrl">
+<body ng-app="app" ng-controller="MainCtrl">
   What's is your name?:
   <input type="text" ng-model="user.name" />
   <button ng-click="greet()">Click here!</button>
