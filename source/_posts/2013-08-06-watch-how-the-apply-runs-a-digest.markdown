@@ -38,7 +38,7 @@ app.controller('MainCtrl', function($scope) {
 Hello, {{ World }}
 ```
 
-Here, even if we have two things attached to the `$scope`, only one is bound. So in this case we only created one `$watch`.
+Here, even though we have two things attached to the `$scope`, only one is bound. So in this case we only created one `$watch`.
 
 ```javascript controllers.js
 app.controller('MainCtrl', function($scope) {
