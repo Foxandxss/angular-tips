@@ -289,7 +289,7 @@ We want to `$watch` any changes in our `$scope.user` object. Same as before but 
 
 ***
 
-Uhm? It doesn't work. Why? Because the `$watch` by default compares the reference of the objects. In the example 1 and 2, every time we modify `$scope.name` it will create a new primitive, so the `$watch` will fire because the reference of the object is new and that is our change. In this new case, since we are watching `$scope.user` and then we are changing `$scope.user.name`, the reference of `$scope.user` is never changing because we are creating a new `$scope.user.name` every time we change the input, but the `$scope.user` will be always the same.
+Uhm? It doesn't work. Why? Because the `$watch` by default compares the reference of the objects. In example 1 and 2, every time we modify `$scope.name` it will create a new primitive, so the `$watch` will fire because the reference of the object is new and that is our change. In this new case, since we are watching `$scope.user` and then we are changing `$scope.user.name`, the reference of `$scope.user` is never changing because we are creating a new `$scope.user.name` every time we change the input, but the `$scope.user` will be always the same.
 
 That is obviously not the desired case in this example.
 
