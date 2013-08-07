@@ -6,6 +6,9 @@ comments: true
 categories: [$apply, $digest, $watch, advanced]
 ---
 {% raw %}
+
+**UPDATE**: This post is meant for beginners, for those that just started to learn Angular and want to know how data-binding works. If you already know how to use Angular properly, I highly suggest you go to the source code instead.
+
 Angular users want to know how data-binding works. There is a lot of vocabulary around this: `$watch`, `$apply`, `$digest`, `dirty-checking`... What are they and how do they work? Here I want to address all those questions, which are well addressed in the documentation, but I want to glue some pieces together to address everything in here, but keep in mind that I want to do that in a simple way. For more technical issues, check the source.
 
 Let's start from the beginning.
