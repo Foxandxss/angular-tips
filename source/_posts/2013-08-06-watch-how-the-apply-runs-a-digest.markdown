@@ -57,7 +57,7 @@ app.controller('MainCtrl', function($scope) {
 </ul>
 ```
 
-How many `$watch` are created here? Two for each person (for name and age) in people plus one for the ng-repeat. If we have 10 people in the list it will be `(2 * 10) + 1`, AKA `21` `$watch`.
+How many `$watch` are created here? Two for each person (for name and age) in people plus one for the `ng-repeat`. If we have 10 people in the list it will be `(2 * 10) + 1`, AKA `21` `$watch`.
 
 So, everything that is bound in our UI using directives creates a `$watch`. Right, but when are those `$watch` created?
 
@@ -178,7 +178,7 @@ element.bind('click', function() {
 });
 ```
 
-`$apply` is a function of our `$scope` (or `scope` inside a directive's link function) so calling it will force a `$digest loop` (except if there is a loop in course, in that case it will throw an exception, which is a sign that we don't need to call '$apply' there).
+`$apply` is a function of our `$scope` (or `scope` inside a directive's link function) so calling it will force a `$digest loop` (except if there is a loop in course, in that case it will throw an exception, which is a sign that we don't need to call `$apply` there).
 
 ## Try it 
 
