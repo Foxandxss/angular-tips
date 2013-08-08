@@ -669,8 +669,6 @@ With this we end the first (but not the last :)) article of this blog.
 
 Angular.js is a great framework and I think that you are already in love with it. I expect to see you here for the next articles!
 
-Last but not least, I want to thank `Auser` from [ng-newsletter](http://www.ng-newsletter.com/) who told me how to add this interactivity to my blog.
-
 I hope you enjoyed it and I expect your comments :)
 
 <script type="text/javascript">

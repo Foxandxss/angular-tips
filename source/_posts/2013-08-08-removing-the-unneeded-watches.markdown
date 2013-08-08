@@ -11,7 +11,7 @@ If you ran across any performance issue or you simply want to get rid of those u
 All the `$watch` that are created have a mechanism to be disabled in the case they are not needed anymore. We have the freedom to choose when a `$watch` is not needed anymore.
 
 Let's see an example:
-
+<!--more-->
 ```javascript app.js
 app = angular.module('app', []);
 
