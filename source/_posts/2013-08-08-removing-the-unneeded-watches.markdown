@@ -6,9 +6,9 @@ comments: true
 categories: [$watch]
 ---
 {% raw %}
-If you ran across any performance issue or you simply want to get rid of those unneeded watches, here is a tip for you!
+Having too many `$watch`s can create performance issues for webpages, especially on mobile devices. This post will explain how to remove extraneous`$ watch`s and accelerate your application!
 
-All the `$watch` that are created have a mechanism to be disabled in the case they are not needed anymore. We have the freedom to choose when a `$watch` is not needed anymore.
+Any `$watch` can be disabled when it is no longer needed. Thus, we have the freedom to choose when to remove a `$watch` from the `$watch` list.
 
 Let's see an example:
 <!--more-->
@@ -42,13 +42,13 @@ app.controller('MainCtrl', function($scope) {
 
 ***
 
-The `$watch` returns a function which will unbind the `$watch` upon call. So we simply call it when we don't want to `$watch` anymore.
+The `$watch` function itself returns a function which will unbind the `$watch` when called. So, when the `$watch` is no longer needed, we simply call the function returned by `$watch`.
 
-How can this be useful for bigger applications with hundred to thousand watches?
+How can this be useful for bigger applications with hundreds to thousands of `$watch`s?
 
 ## A page made with static data
 
-Let's imagine that we are building a page for a conference where we have a page listing all the sessions on a certain day. This page could be like this:
+Let's imagine that we are building a page for a conference that lists all the sessions on a certain day. This page could look like this:
 
 ```javascript app.js
 app.controller('MainCtrl', function($scope) {
@@ -73,17 +73,17 @@ app.controller('MainCtrl', function($scope) {
 </ul>
 ```
 
-Imagine that this is a big conference and one day has 30 sessions. How many watches are there? 5 per session plus 1 of the `ng-repeat`. That makes 151 watches. What's the problem with this? That every time we click to like a session, Angular is going to check if the name of the session has changed (and will do the same with the other bindings as well).
+Imagine that this is a big conference, and one day has 30 sessions. How many `$watch`s are there? There are five per session, plus one for the `ng-repeat`. That makes 151`$watch`s. What's the problem with this? Every time the user “likes” a session, Angular is going to check if the name of the session has changed (and will do the same with the other bindings as well).
 
-The problem here is that all of our data, with the exception of the likes, are static. Isn't that a waste of resources? We are 100% sure that our data are not going to change, so, why should Angular check every time if it has changed?
+The problem is that all of our data, with the exception of the likes, are static. Isn't that a waste of resources? We are 100% sure that our data are not going to change, so, why should Angular check if they have changed?
 
-The solution is simple. We unbind every `$watch` that is not meant to change. They do a fantastic job in the first run, where our DOM is updated with the static information, but after that, they are always listening for changes that are not going to happen.
+The solution is simple. We unbind every `$watch` that is never going to detect a change. These `$watch`s are important during the first run, in which our DOM is updated with the static information, but after that, they are watching a constant for changes, which is a clear waste of resources.
 
-You convinced me! How can we approach that? Luckily for us, there is a guy who asked himself this question before us and created a set of directives that does the job for us: [Bindonce](https://github.com/Pasvaz/bindonce).
-
+You convinced me! How can we approach this? Luckily for us, there is a guy who asked himself this question before us and created a set of directives that does the job for us: [Bindonce](https://github.com/Pasvaz/bindonce).
+	
 ## Bindonce
 
-Bindonce is a set of directives meant for bindings that are not going to change while we are on that page. That sounds like a perfect match for our application.
+Bindonce is a set of directives meant for bindings that are not going to change while the user is on a page. That sounds like a perfect match for our application.
 
 Let's rewrite our view:
 
@@ -103,21 +103,21 @@ Let's rewrite our view:
 </ul>
 ```
 
-For this to work we need to import `bindonce` into our app (and load the library after angular):
+For this to work we need to import `bindonce` into our app (and load the library after Angular):
 
 ```javascript app.js
 app = angular.module('app', ['pasvaz.bindonce']);
 ```
 
-We changed our interpolations (`{{ ... }}`) to `bo-text`. This directive binds our model and waits until the DOM is updated to unbind the `$watch`. This way, the data will be on screen but without any `$watch`.
+We changed our interpolations (`{{ ... }}`) to `bo-text`. This directive binds our model and waits until the DOM is updated to unbind the `$watch`. This way, the data will be on screen but without any `$watch`s.
 
 To make this happen, we need to set the `bindonce` directive in the parent, so it will know when the data is ready (in this case, the session) so the children directives like `bo-text` will know when they can actually unbind the `$watch`.
 
-The result of this is 1 `$watch` per session instead of 5. That makes 31 `$watch` instead of 151. That means that with a proper use of `bindonce` we can potentially reduce the number of watches in our application.
+The result of this is one `$watch` per session instead of five. That makes 31 `$watch` instead of 151. That means that with a proper use of `bindonce` we can potentially reduce the number of watches in our application.
 
 ## Conclusion
 
-We shouldn't worry about the performance of our applications, rare are the cases where our application starts to lag, but if you run into one of those cases or you simply want to remove unneeded watches, this library is for you.
+While premature optimization should be avoided, this library could help an application that is suffering from a performance bottleneck.
 
 There are a lot more directives in `bindonce`, so I encourage you to check them out! [List of directives](https://github.com/Pasvaz/bindonce#attribute-usage)
 
