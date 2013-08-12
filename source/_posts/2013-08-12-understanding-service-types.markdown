@@ -327,6 +327,8 @@ It is prettier now in my humble opinion.
 
 ***
 
+**NOTE**: This last one, being Coffeescript seems to fail a little bit with JSbin. Go to the Javascript tab and select Coffeescript to make it work.
+
 ## Conclusion
 
 Services are one of the coolest features of Angular. We have a lot of ways to create them, we just need to pick the correct one for our use cases and implement it.
