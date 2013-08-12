@@ -6,7 +6,7 @@ comments: true
 categories: [$watch]
 ---
 {% raw %}
-Having too many `$watch`s can create performance issues for webpages, especially on mobile devices. This post will explain how to remove extraneous`$ watch`s and accelerate your application!
+Having too many `$watch` can create performance issues for webpages, especially on mobile devices. This post will explain how to remove extraneous `$watch` and accelerate your application!
 
 Any `$watch` can be disabled when it is no longer needed. Thus, we have the freedom to choose when to remove a `$watch` from the `$watch` list.
 
@@ -44,7 +44,7 @@ app.controller('MainCtrl', function($scope) {
 
 The `$watch` function itself returns a function which will unbind the `$watch` when called. So, when the `$watch` is no longer needed, we simply call the function returned by `$watch`.
 
-How can this be useful for bigger applications with hundreds to thousands of `$watch`s?
+How can this be useful for bigger applications with hundreds to thousands of `$watch`?
 
 ## A page made with static data
 
@@ -73,11 +73,11 @@ app.controller('MainCtrl', function($scope) {
 </ul>
 ```
 
-Imagine that this is a big conference, and one day has 30 sessions. How many `$watch`s are there? There are five per session, plus one for the `ng-repeat`. That makes 151`$watch`s. What's the problem with this? Every time the user “likes” a session, Angular is going to check if the name of the session has changed (and will do the same with the other bindings as well).
+Imagine that this is a big conference, and one day has 30 sessions. How many `$watch` are there? There are five per session, plus one for the `ng-repeat`. That makes 151 `$watch`. What's the problem with this? Every time the user “likes” a session, Angular is going to check if the name of the session has changed (and will do the same with the other bindings as well).
 
 The problem is that all of our data, with the exception of the likes, are static. Isn't that a waste of resources? We are 100% sure that our data are not going to change, so, why should Angular check if they have changed?
 
-The solution is simple. We unbind every `$watch` that is never going to detect a change. These `$watch`s are important during the first run, in which our DOM is updated with the static information, but after that, they are watching a constant for changes, which is a clear waste of resources.
+The solution is simple. We unbind every `$watch` that is never going to detect a change. These `$watch` are important during the first run, in which our DOM is updated with the static information, but after that, they are watching a constant for changes, which is a clear waste of resources.
 
 You convinced me! How can we approach this? Luckily for us, there is a guy who asked himself this question before us and created a set of directives that does the job for us: [Bindonce](https://github.com/Pasvaz/bindonce).
 	
@@ -109,7 +109,7 @@ For this to work we need to import `bindonce` into our app (and load the library
 app = angular.module('app', ['pasvaz.bindonce']);
 ```
 
-We changed our interpolations (`{{ ... }}`) to `bo-text`. This directive binds our model and waits until the DOM is updated to unbind the `$watch`. This way, the data will be on screen but without any `$watch`s.
+We changed our interpolations (`{{ ... }}`) to `bo-text`. This directive binds our model and waits until the DOM is updated to unbind the `$watch`. This way, the data will be on screen but without any `$watch`.
 
 To make this happen, we need to set the `bindonce` directive in the parent, so it will know when the data is ready (in this case, the session) so the children directives like `bo-text` will know when they can actually unbind the `$watch`.
 
