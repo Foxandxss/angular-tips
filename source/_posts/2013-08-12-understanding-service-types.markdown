@@ -70,11 +70,17 @@ app.factory('foo', function() {
     getPrivate: getPrivate
   };
 });
+
+// or..
+
+app.factory('bar', function(a) {
+  return a * 2;
+});
 ```
 
 The `Factory` is the most common used service. It is also the easiest to understand.
 
-A `factory` is a service which returns an object. There is no opinion of how you need to create it, you only need to return an object. In my case, I like to work with the [Revealing module pattern](http://addyosmani.com/resources/essentialjsdesignpatterns/book/#revealingmodulepatternjavascript), but you can use the approach you want.
+A `factory` is a service which can return any datatype. There is no opinion of how you need to create it, you only need to return something. When working with objects, I like to work with the [Revealing module pattern](http://addyosmani.com/resources/essentialjsdesignpatterns/book/#revealingmodulepatternjavascript), but you can use the approach you want.
 
 As I said before, all types are singleton, so if we modify `foo.variable` in one place, the other places will have that change too.
 
