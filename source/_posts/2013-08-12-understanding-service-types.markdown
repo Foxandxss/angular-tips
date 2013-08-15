@@ -10,7 +10,7 @@ Angular comes with different types of services. Each one with its own use cases.
 
 Something important that you have to keep in mind is that the services are always singleton, it doesn't matter which type you use. This is the desired behavior.
 
-**NOTE**: A singleton is a design pattern that restricts the instantiation of a class to just one object. Every place where we inject our controller, will use the same instance.
+**NOTE**: A singleton is a design pattern that restricts the instantiation of a class to just one object. Every place where we inject our service, will use the same instance.
 
 Let's start with my own opinion about services.
 <!--more-->
