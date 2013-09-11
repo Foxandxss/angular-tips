@@ -209,7 +209,7 @@ Working as expected. What about... controllers? Well there are two possibilities
 But if the `controller` just hold the name of the controller it wants to use, the decoration becomes a little bit problematic.
 
 Let's see:
-
+{% raw %}
 ```javascript foo.js
 app.controller("fooCtrl", function($scope) {
   $scope.name = "from the directive controller";
@@ -224,7 +224,7 @@ app.directive("foo", function() {
   };
 });
 ```
-
+{% endraw %}
 Sure, the directive is good enough, but we would love to change `$scope.name` after three seconds to something else. To do that we need to decorate the controller:
 
 ```javascript foo_decorator.js
