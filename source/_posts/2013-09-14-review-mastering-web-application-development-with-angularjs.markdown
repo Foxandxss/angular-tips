@@ -13,7 +13,7 @@ In my old blogs I had a reviews section, so let's start with `Mastering Web Appl
 
 It is awesome, period.
 
-Ok ok, let's me review it properly :P
+Ok ok, let me review it properly :P
 
 ### Prologue
 
@@ -21,7 +21,7 @@ This book is written by two awesome Angular.js developers, `Pawel Kozlowski` and
 
 ### Book content
 
-The first chapter is just an overview of what is Angular.js which just tries to sell Angular.js to you. It explains a little bit all the pieces that compose Angular.js.
+The first chapter is just an overview of what Angular.js is which just tries to sell Angular.js to you. It explains a little bit all the pieces that compose Angular.js.
 
 For me, it is in the second chapter where you start to love the book, it introduces you on `angular-app` which is probably one of the best little examples of code that has a lot of best practices in one place. So they made this application as the sample application for this book and to be honest, they did an awesome job because people are really interested in this `angular-app` and now they have all the answers they need in the book.
 
