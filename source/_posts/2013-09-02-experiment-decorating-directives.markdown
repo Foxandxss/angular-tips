@@ -6,11 +6,11 @@ comments: true
 categories: [experiment, directives]
 ---
 
-**DISCLAIMER**: This is an experiment, it is not something officially supported and by that, this is not meant for beginners. Use it at your own risk and take notice that a bad use of it can break the internet.
+**DISCLAIMER**: This is an experiment, it is not something officially supported and because of that, this is not meant for beginners. Use it at your own risk and take notice that a bad use of it can break the Internet.
 
 Jokes aside, this could be useful in a bunch of use cases. It is up to you to decide.
 
-Ever had a 3rd party directive where you wished it had any extra behavior you wanted? I did.
+Ever had a third party directive where you wished it had any extra behavior you wanted? I did.
 <!--more-->
 Let's see an example:
 
@@ -29,7 +29,7 @@ app.directive("foo", function() {
 </body>
 ```
 
-You think that this directive is awesome (really? :P) but you're one of those developers that likes to use directives as a comments. The problem is that the directive doesn't allow it and you don't see why it shouldn't. What can you do here? We can decorate it! How? Using the `$provide.decorator` we use to decorate services. Really? See:
+You think that this directive is awesome (really? :P) but you're one of those developers that likes to use directives as a comment. The problem is that the directive doesn't allow it and you don't see why it shouldn't. What can you do here? We can decorate it! How? Using the `$provide.decorator` we use to decorate services. Really? See:
 
 ```javascript foo_decorator.js
 app.config(function($provide) {
@@ -87,9 +87,9 @@ app.directive("foo", function() {
 </body>
 ```
 
-A more complicated directive. It receives a name via attribute and we display it on the template with an exclamation mark.
+A more complicated directive. It receives a name via an attribute and we display it on the template with an exclamation mark.
 
-We got it but we really need to run a function to log how many times a user has clicked in the directive. That means that we need to extend our isolated scope and link function. Let's go:
+We got it but we really need to run a function to log how many times a user has clicked on the directive. That means that we need to extend our isolated scope and link function. Let's go:
 
 ```javascript foo_decorator.js
 app.config(function($provide) {
@@ -206,7 +206,7 @@ Just the same idea! We grab the old `compile` function and we create a new one. 
 
 Working as expected. What about... controllers? Well there are two possibilities. If the `controller` is an inline function in our directive, it is much the same, holding the old one, extending it as we did with `compile` and `link`.
 
-But if the `controller` just hold the name of the controller it wants to use, the decoration becomes a little bit problematic.
+But if the `controller` just holds the name of the controller it wants to use, the decoration becomes a little bit problematic.
 
 Let's see:
 {% raw %}
@@ -248,11 +248,11 @@ app.config(function($provide) {
 
 We assign the controller name (if the controller is inline, `directive.controller` will hold the actual controller instead of the name) into a variable and then we create a new controller in our directive. Since we need to use `$timeout` we inject it too.
 
-The difference here is since we don't hold the actual controller but a name, we need to use `$controller` (injected in the decorator) to fetch the actual controller. To make it work we pass the controller name and all the parameters the original controller has, AKA the `$scope`.
+The difference here is that since we don't hold the actual controller but a name, we need to use `$controller` (injected in the decorator) to fetch the actual controller. To make it work we pass the controller name and all the parameters the original controller has, AKA the `$scope`.
 
 Here we can't use `apply`, instead, we used `angular.extend` to "apply" the old behavior. Then we just needed to add the new behavior.
 
-There is other way (just the important bits):
+There is another way (just the important bits):
 
 ```javascript
 directive.controller = function($scope, $timeout) {
@@ -266,7 +266,7 @@ directive.controller = function($scope, $timeout) {
 };
 ```
 
-Instead of using `angular.extend` we just return the old controller at the end. If you need to override old stuff, just use `controller.xxx` :)
+Instead of using `angular.extend` we just return the old controller at the end. If you need to override old stuff, just use `controller.xxx` :).
 
 ## Try it
 
@@ -276,10 +276,10 @@ Instead of using `angular.extend` we just return the old controller at the end. 
 
 ## Conclusion
 
-Two things to have in mind. First: The decorators needs to appear after the directives or they won't find them. Second: If you want to decorate let's say the `accordion` of `ui-bootstrap` you should apply the decorator in a config function on the `ui-bootstrap` module, not your application one.
+Two things to have in mind. First: The decorators need to appear after the directives or they won't find them. Second: If you want to decorate let's say the `accordion` of `ui-bootstrap` you should apply the decorator in a config function on the `ui-bootstrap` module, not your application one.
 
-This experiment could be useful in those cases were we have some 3rd party directive that we need it do to something else. Is not something for everyday use but I think that the knowledge worth it.
+This experiment could be useful in those cases were we have some 3rd party directive that we need to do something else. It is not something for everyday use but I think that the knowledge is worth it.
 
 I remember the day I spent like 2 hours creating a new directive to extend the functionality of the `accordion` to log when a user clicks on the header. A lot of DOM manipulation, fighting with `jqLite` limitations and finally, we got it working. With this, it is just... 5 lines of code?
 
-I also want to thanks my good friend [Rodric Haddad](https://twitter.com/rodyhaddad) which helped me a lot with the brainstorming.
+I also want to thank my good friend [Rodric Haddad](https://twitter.com/rodyhaddad) who helped me a lot with the brainstorming.
