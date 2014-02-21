@@ -242,7 +242,7 @@ Testing is your friend, and with little effort on it, will save us real pain.
 
 ### How can we test Angular.js?
 
-Surprisingly enough, almost the same as our calculator. Obviously the code will we complex so that will result on complex tests, but the idea remains the same.
+Surprisingly enough, almost the same as our calculator. Since `Angular.js` is more complex than basic `Javascript` it involves a little more of work.
 
 There is a couple of things to learn. How to work with angular `modules` and `dependency injection`. They doesn't work as we used to, they needs some special ways that already exists on a file called `angular-mocks.js`. It is better if we see an skeleton:
 
