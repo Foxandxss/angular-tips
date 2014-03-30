@@ -62,7 +62,7 @@ What is supposed to happen here? What should we see here? Let me think about it.
 
 ## Try it
 
-<a class="jsbin-embed" href="http://jsbin.com/geyip/1/embed?output">Angular tips</a><script src="http://static.jsbin.com/js/embed.js"></script>
+<a class="jsbin-embed" href="http://jsbin.com/geyip/4/embed?output">Angular tips</a><script src="http://static.jsbin.com/js/embed.js"></script>
 
 ***
 
