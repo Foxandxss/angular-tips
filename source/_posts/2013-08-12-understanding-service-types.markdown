@@ -288,7 +288,7 @@ Kudos to [Josh David Miller](http://stackoverflow.com/a/16626908/123204) for his
 
 ## Try it
 
-<a class="jsbin-embed" href="http://jsbin.com/irebew/3/embed?live">JS Bin</a><script src="http://static.jsbin.com/js/embed.js"></script>
+<a class="jsbin-embed" href="http://jsbin.com/irebew/4/embed?live">JS Bin</a><script src="http://static.jsbin.com/js/embed.js"></script>
 
 ***
 
