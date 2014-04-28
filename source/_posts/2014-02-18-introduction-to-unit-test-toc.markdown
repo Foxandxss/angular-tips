@@ -10,7 +10,7 @@ Here is the `Table of contents` of the `Introduction to unit test` serie:
 
 * [Introduction](/blog/2014/02/introduction-to-unit-test-introduction)
 * [Spies](/blog/2014/03/introduction-to-unit-test-spies)
-* Controllers
+* [Filters](/blog/2014/04/introduction-to-unit-test-filters)
 * Services
-* Filters
+* Controllers
 * Directives
