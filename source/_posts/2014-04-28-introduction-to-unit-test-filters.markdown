@@ -6,7 +6,7 @@ comments: true
 categories: [unit test, filters]
 ---
 
-Filters are the easiest components to tests in `Angular`. That is why I decided to explain them first. Our first job is to decide what we want to achieve and in this case I decided to write a custom `uppercase` filter with options.
+Filters are the easiest components to test in `Angular`. That is why I decided to explain them first. Our first job is to decide what we want to achieve and in this case I decided to write a custom `uppercase` filter with options.
 
 What should our filter do? Our filter will uppercase the entire input or just part of it based on an input. Let's describe how we would like to use it here:
 <!--more-->
@@ -16,7 +16,7 @@ What should our filter do? Our filter will uppercase the entire input or just pa
 * {{ "hello" | upper:-2 }} - helLO
 {% endraw %}
 
-As you see, we want a numeric argument to specify how many characters we want to uppercase which can also be a negative number to start from the end.
+As you see, we want a numeric argument to specify how many characters we want to uppercase, which can also be a negative number to start from the end.
 
 Alright, let's start with the tests:
 
@@ -31,9 +31,9 @@ describe('Filter: upper', function() {
 });
 ```
 
-We learned about this in the introduction. We are simply loading out `app` module (were we are going to put our filter) and then we are injecting it. Filters are injected using `nameFilter` where `name` is the name of the filter.
+We learned about this in the introduction. We are simply loading out `app` module (where we are going to put our filter) and then we are injecting it. Filters are injected using `nameFilter` where `name` is the name of the filter.
 
-There a couple ways of testing, we can write all the tests at once or we can write some tests and make them pass and repeat until it is feature complete or we can write all the tests at once. We are going to use the first technique here.
+There are a couple ways of testing, we can write all the tests at once or we can write some tests and make them pass and repeat until it is feature complete or we can write all the tests at once. We are going to use the first technique here.
 
 Let's add the first one (just after the last `beforeEach`):
 
@@ -62,7 +62,7 @@ We just return the input uppercased and it...
 
 {% img /images/posts/introtest/filters/image2.png %}
 
-...it pass!
+...it passes!
 
 What about uppercasing just the first `x` parameters?
 
@@ -125,7 +125,7 @@ angular.module('app').filter('upper', function() {
 
 We added another branch to see if quantity is less than 0 and if so, we just uppercase the last `quantity` characters.
 
-Good, our `upperFilter` is now feature complete. That doesn't meant it is finished yet. What happen if the `quantity` is longer than the input? Let's test it:
+Good, our `upperFilter` is now feature complete. That doesn't mean it is finished yet. What happens if the `quantity` is longer than the input? Let's test it:
 
 ```javascript
 it('works with a quantity longer than the input', function() {
