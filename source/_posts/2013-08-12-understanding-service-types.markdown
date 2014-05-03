@@ -27,7 +27,7 @@ app.constant('fooConfig', {
 
 A constant is a useful service often used to provide default configurations in directives. So if you are creating a directive and you want to be able to pass options to it but also at the same time to give it some default configurations, a `constant` service is a good way to go.
 
-As a constant, the values we put in there can't be changed in any way. The `constant` service expects a primitive or an object.
+The `constant` service expects a primitive or an object.
 
 ## Try it
 
@@ -46,7 +46,7 @@ app.value('fooConfig', {
 });
 ```
 
-A `value` service is like the `constant` service but the first one can be changed. It is used in directives too, to hold configuration. A `value` service is like the small brother of a `factory`, it only holds values and we cannot compute those values in the service.
+A `value` service is like the `constant` service. It accepts a primitive or an object. So... what's the difference between the two? The difference is that a `constant` service can be injected on a `config` function but `value` can't do that. That is why `constant` is commonly used for directive's configuration, because we can override it at configuration time.
 
 ## Try it
 
