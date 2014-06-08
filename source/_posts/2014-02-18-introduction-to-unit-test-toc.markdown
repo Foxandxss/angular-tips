@@ -13,4 +13,5 @@ Here is the `Table of contents` of the `Introduction to unit test` serie:
 * [Filters](/blog/2014/04/introduction-to-unit-test-filters)
 * [Services](/blog/2014/06/introduction-to-unit-test-services)
 * [Controllers](/blog/2014/06/introduction-to-unit-test-controllers)
-* Directives
+* [Directives](/blog/2014/06/introduction-to-unit-test-directives)
+* [Conclusions](/blog/2014/06/introduction-to-unit-test-conclusions)
