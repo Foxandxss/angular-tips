@@ -97,14 +97,14 @@ it('will receive the list of posts from the rest service', function() {
     }
   ];
   
-  spyOn(rest, 'getAll').andReturn(posts);
+  spyOn(rest, 'getAll').and.returnValue(posts);
   post.retrieve();
   expect(rest.getAll).toHaveBeenCalled();
   expect(post.posts).toBe(posts);
 });
 ```
 
-We create an array of fake posts and then we call `spyOn` on the `getAll` function. We can make an spy returns something when called using the `andReturn` function which is called with our fake posts.
+We create an array of fake posts and then we call `spyOn` on the `getAll` function. We can make an spy returns something when called using `and.returnValue`, which is called with our fake posts.
 
 Having our spy in place, all what we need to do is to call `post.retrieve` and then assert that `getAll` was called and that also `post.posts` contain our fake posts that were returned by `getAll`.
 
@@ -116,15 +116,15 @@ it('can accept a post to update it', function() {
     title: 'Title',
     body: 'Post'
   };
-  spyOn(rest, 'update').andCallThrough();
+  spyOn(rest, 'update').and.callThrough();
   post.accept(postToAccept);
   expect(rest.update).toHaveBeenCalledWith(postToAccept);
 });
 ```
 
-We start with the fake post we want to update and then we create the spy. What is that `anCallThrough`? Well, as you know, the real function is never called, but if you really need to spy it and also call it, you can do it with `andCallThrough`. To see this working, you can check how `rest.update` logs a message on the dev console.
+We start with the fake post we want to update and then we create the spy. What is that `and.callThrough`? Well, as you know, the real function is never called, but if you really need to spy it and also call it, you can do it with `and.callThrough`. To see this working, you can check how `rest.update` logs a message on the dev console.
 
-**Note**: There is no real reason to use `andCallThrough` here, I did it to show how it works.
+**Note**: There is no real reason to use `and.callThrough` here, I did it to show how it works.
 
 After that, we just call `post.accept` passing our fake post and then assert that `rest.update` was indeed called with fake post as a parameter.
 
