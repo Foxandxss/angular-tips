@@ -12,7 +12,7 @@ Let's talk about unit testing our applications.
 
 Unit tests are a bunch of Javascript files that we create to make sure that every part of our application works as it is expected to work. That means that we need to write hundred of lines of code to assert that our code does what is supposed to do.
 
-**Isn't that a waste of time?** The boss is always telling us that we need to be faster and hundred of lines doesn't sound like *fast*. Au contraire, that bunch of code will save us **HOURS**. Don't believe me? I have proofs.
+* **Isn't that a waste of time?** The boss is always telling us that we need to be faster and hundred of lines doesn't sound like *fast*. Au contraire, that bunch of code will save us **HOURS**. Don't believe me? I have proofs.
 <!--more-->
 * **Extra code**: How many times did you end with code that is not used? Maybe we added some extra loops that are not needed or some function to do something and then realize that we are not using it. When we code our modules before any test, we don't actually know what we are going to need or if our algorithm is going to support any kind of input (that could lead to those extra loops). More code means more stuff to maintain which also means, more money.
 
