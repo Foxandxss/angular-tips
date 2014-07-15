@@ -19,7 +19,7 @@ Alright, what are we going to build here? I am going crazy for this one and we a
 Generate svg circles? Yeah, we give it a size, and two colors, one to fill it and one for its stroke. With that parameters we do some computation on the size and well, we put a circle on the screen. We can also observe the changes of its size to update it realtime.
 
 Shall we begin? Let's do the test's skeleton:
-
+{% raw %}
 ```javascript
 describe('directive: svg-circle', function() {
   var element, scope;
@@ -39,7 +39,7 @@ describe('directive: svg-circle', function() {
   }));
 });
 ```
-
+{% endraw %}
 To test a directive we need to create and compile it, one way is creating an string that contains our directive. Here you can see how we created a `svg-circle` element (which will be our directive) and that we also defined our three attributes. This is one of the good things about TDD, we don't have our directive created yet but we already know how we want to use it, isn't that cool?
 
 We see that all three attributes receives a simple string that could be interpolated from a scope variable like the `size` one. If we want, we could put the other attributes to use interpolation too, but a static value for them is good enough for the test.
@@ -129,7 +129,7 @@ On the `beforeEach` block we just need to change the size (and also to $digest s
 Testing directives is not much more than this. We create our directive element, we compile it and we test it. To test it, some times we need to check its scope status and also the resulting DOM to check that everything is in place as we expect.
 
 The directive can be written like this:
-
+{% raw %}
 ```javascript
 angular.module('app').directive('svgCircle', function() {
   return {
@@ -165,7 +165,7 @@ angular.module('app').directive('svgCircle', function() {
   };
 });
 ```
-
+{% endraw %}
 Running example [here](http://plnkr.co/edit/tirhLwFEXLKSzukbsW1q?p=preview)
 
 Directives are the hardest part of angular so testing it could be also a little bit cumbersome but with TDD we can make the curve a little bit less steep.
