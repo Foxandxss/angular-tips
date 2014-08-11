@@ -71,10 +71,12 @@ What's going on here? We are creating that new array directly on the HTML. The i
 
 What's the advantage here? That we can access our `filteredPeople` where we need it, both in our HTML and controller. Having that in mind, we can now access its `length` property to show a message if there are no results and even to count the number of filtered people.
 
+But what are the disadvantage? `filteredPeople` is going to be evaluated in every `$digest` and on a big big list it can be problematic and then is when we should consider doing the filtering on the controller.
+
 ## Try it
 
 <iframe src="http://embed.plnkr.co/8EqIoAFn6arDA80riY3o/preview" style="width:100%; height:320px" frameborder="0"></iframe>
 
 ***
 
-That is all. A nice trick for a really common problem :)
+That is all. A nice trick for a really common problem that comes useful on small to medium lists.
