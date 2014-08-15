@@ -14,7 +14,7 @@ I have you covered with two basic but functional implementations of it both in `
 
 First, I created a service to handle the `encode` / `decode` (this JWT implementation calls those methods `sign` and `verify` respectively), let's see it:
 
-```javascript
+```javascript api/services/sailsTokenAuth.js
 var jwt = require('jsonwebtoken');
 
 module.exports.issueToken = function(payload) {
@@ -35,7 +35,7 @@ Good, let's see our `AuthController`:
 
 First the `authenticate` method:
 
-```javascript
+```javascript api/controllers/AuthController.js
 authenticate: function(req, res) {
   var email = req.param('email');
   var password = req.param('password');
@@ -72,7 +72,7 @@ Nothing fancy right? No special session stuff or code, just a normal function th
 
 The register method is not fancy either:
 
-```javascript
+```javascript api/controllers/AuthController.js
 register: function(req, res) {
   //TODO: Do some validation on the input
   if (req.body.password !== req.body.confirmPassword) {
@@ -95,7 +95,7 @@ We just create a user with those new credentials and if they are valid, we issue
 
 So, how we manage incoming requests? Sails has a concept called `Policies` which are basically middlewares that runs before a controller. There we can check for our token, let's see:
 
-```javascript
+```javascript api/policies/tokenAuth.js
 module.exports = function(req, res, next) {
   var token;
 
@@ -151,7 +151,7 @@ There is nothing more to add. Surprised? We just needed a simple library to mana
 
 You will be surprised to see that this implementation is almost the same (if we ignore my Rails ignorance this days). I created a lib for the encoding/decoding:
 
-```ruby
+```ruby lib/auth_token.rb
 module AuthToken
   def AuthToken.issue_token(payload)
     JWT.encode(payload, Rails.application.secrets.secret_key_base)
@@ -171,7 +171,7 @@ Basically it does the same as the sails one. The secret we are using here is the
 
 So for the `AuthController`, let's begin with register:
 
-```ruby
+```ruby app/controllers/auth_controller.rb
 def register
   user = User.new(user_params)
   if user.save
@@ -188,7 +188,7 @@ We create an user and if all is correct, we issue a new token which we will retu
 
 For the authenticate method:
 
-```ruby
+```ruby app/controllers/auth_controller.rb
 def authenticate
   user = User.find_by(email: params[:email].downcase)
   if user && user.authenticate(params[:password])
@@ -205,7 +205,7 @@ No surprises here. If the credentials are valid, we issue the token and return i
 
 How do we manage the request here? I created a base controller for all the API controllers (which I assume that all of them needs authentication) and there I created a method like:
 
-```ruby
+```ruby app/controllers/api/base_controller.rb
 before_action :authenticate
 
 def authenticate
