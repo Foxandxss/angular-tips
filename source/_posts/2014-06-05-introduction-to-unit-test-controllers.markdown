@@ -98,6 +98,8 @@ Also, we did here a little different than the other article. In the past, we cre
 
 What we did then is to create an empty object, load the module, mock the service and then created the rest of the mock service. Why in this order? Why don't create the mock and then load it with the module? If you try to use `module()` after we used `inject()` angular will throw an exception. So because of that, we need to do this in this concrete order.
 
+**NOTE**: Why are we using this really big `mock` here instead of an `spy`? That is a good question. Since this service relies on `promises`, and a `spy` is not meant for complex behavior, we need a way to test our promise usage. Imagine our controller does something on promise success and on promise failure. How do you achieve that with a simple `spy` ? It is better to mock out that function to create a promise that could both resolve or reject that promise. I think that the TL;DR; here is to use `spy` when possible and mocks if we need to tests promises.
+
 Ok, we have our mock in place. All we need now is to load the rest of the dependencies and setup the controller:
 
 ```javascript
