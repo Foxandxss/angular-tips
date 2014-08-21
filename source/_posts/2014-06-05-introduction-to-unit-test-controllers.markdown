@@ -26,7 +26,7 @@ angular.module('app').factory('restService', function() {
 });
 ```
 
-That is all we need for this example.A method to retrieve all the libraries from an endpoint and also one to create new libraries. We guess that it will use `$http` to do the job.
+That is all we need for this example. A method to retrieve all the libraries from an endpoint and also one to create new libraries. We guess that it will use `$http` to do the job.
 
 Alright, we know what we want to do, so let's prepare our tests:
 
