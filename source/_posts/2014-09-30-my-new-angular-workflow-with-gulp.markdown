@@ -3,7 +3,7 @@ layout: post
 title: "My new angular workflow with gulp"
 date: 2014-09-30 15:42
 comments: true
-categories:
+categories: [workflow]
 ---
 
 Here is *yet another angular boilerplate* opinionated in how I work with Angular. I made it for myself but if you find that my opinions are good for you, feel free to use it and collaborate with issues or pull requests.
