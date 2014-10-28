@@ -126,9 +126,10 @@ Uh, what happened with our `Hello World` ?
 Well, nothing, the question is... Who is routing it? `Laravel` knows nothing about that file, we need to create a route for it:
 
 ```php app/routes.php
-Route::get('{angular?}', function() {
-    return File::get(public_path().'/angular.html');
-})->where('angular', '.*');
+App::missing(function($exception)
+{
+    return File::get(public_path() . '/angular.html');
+});
 ```
 
 We delete all its content and we put that.
@@ -185,9 +186,10 @@ class ShowController extends \BaseController
 ```php app/routes.php
 Route::get('api/shows', 'ShowController@index');
 
-Route::get('{angular?}', function () {
+App::missing(function($exception)
+{
     return File::get(public_path() . '/angular.html');
-})->where('angular', '.*');
+});
 ```
 
 Excuse my `Laravel` fu, I am new at it.
@@ -340,3 +342,5 @@ Our assets have a hash to do cache-busting.
 You can simply tell `forge` to run that before any deployment and you're good to go.
 
 If there is any `Laravel` pro in the room and want to share his opinions, please fill the comment box below :)
+
+**Final note**: If you feel that this is coupled enough for you and you prefer to have your angular in a completely different folder and maybe serve it in a different domain, you can use [this](https://github.com/Foxandxss/fox-angular-gulp-workflow), will work the same. If you think that you're going to end deploying both application together, the way we used in this article is going to be less problematic. Ahh, choices, we always have different choices.
