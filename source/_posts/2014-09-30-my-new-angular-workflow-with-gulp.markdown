@@ -6,6 +6,8 @@ comments: true
 categories: [workflow]
 ---
 
+**NOTE**: The workflow [readme](https://github.com/Foxandxss/fox-angular-gulp-workflow) will be always a little more updated than this article.
+
 Here is *yet another angular boilerplate* opinionated in how I work with Angular. I made it for myself but if you find that my opinions are good for you, feel free to use it and collaborate with issues or pull requests.
 
 Let's start with the `app` folder:
