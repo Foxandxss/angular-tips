@@ -199,7 +199,7 @@ Fantastic! It simply works!
 
 We can create a `Laravel controller` to serve that `/public/angular.html` but we don't really need to. Uh, talking about controllers... There is one we don't need:
 
-```
+```plain
 $ git rm app/controllers/HomeController.php
 $ git rm app/views/hello.php
 ```
@@ -359,7 +359,7 @@ If you're curious about how this work, it is something like:
 
 Let's commit our changes:
 
-```
+```plain
 $ git add .
 $ git commit -m "TV Shows endpoint + angular consumption"
 $ git push
