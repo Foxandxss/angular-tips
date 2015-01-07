@@ -279,7 +279,7 @@ angular.module('plunker')
 
   As a final example, let's use the Angular example of [todomvc](www.todomvc.com) in a plunker and then plug our fake backend:
 
-  <iframe src="http://embed.plnkr.co/l4wQnOsnFcf9zE9uLFvy/preview" style="width:100%; height:320px" frameborder="0"></iframe>
+  <iframe src="http://embed.plnkr.co/l4wQnOsnFcf9zE9uLFvy/preview" style="width:100%; height:480px" frameborder="0"></iframe>
 
   * [Todomvc example](http://plnkr.co/edit/l4wQnOsnFcf9zE9uLFvy?p=preview)
   * [Plunker template with fake backend](http://plnkr.co/edit/tpl:4NUO1oYIWhgya50qR3vK)
