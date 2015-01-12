@@ -139,12 +139,12 @@ Still a backend with just support `GET` requests is not a backend, so let's fini
 
 ```javascript
 $httpBackend.whenPOST('/api/todos').respond(function(method, url, data, headers) {
-    var newItem = JSON.parse(data);
-    newItem.id = things.length;
-    things.push(newItem);
-    
-    return [201, newItem];
-  });
+  var newItem = JSON.parse(data);
+  newItem.id = things.length;
+  things.push(newItem);
+  
+  return [201, newItem];
+});
 ```
 
 We can use a callback function in `.respond` which receives:
@@ -180,20 +180,20 @@ Alright, now we have our `PUT` endpoint and all we need to do is to parse the `d
 
 ```javascript
 $httpBackend.whenDELETE(/^\/api\/todos\/\d+$/).respond(function(method, url, data, headers) {
-    var regex = /^\/api\/todos\/(\d+)/g;
-    
-    var id = regex.exec(url)[1]; // First match on the second item.
-    
-    for (var i = 0, l = things.length; i < l; i++) {
-      if (things[i].id === id) {
-        var index = things.indexOf(things[id]);
-        things.splice(index, 1);
-        break;
-      }
+  var regex = /^\/api\/todos\/(\d+)/g;
+  
+  var id = regex.exec(url)[1]; // First match on the second item.
+  id = parseInt(id, 10);
+  for (var i = 0, l = things.length; i < l; i++) {
+    if (things[i].id === id) {
+      var index = things.indexOf(things[i]);
+      things.splice(index, 1);
+      break;
     }
-    
-    return [204];
-  });
+  }
+  
+  return [204];
+});
 ```
 
 The difference here compared to the `PUT` one is that we don't pass any data with the `id` so we need to grab it from the URL and then find the correct `todo` to delete it. My convention on `delete` is to just return a 204 code (Everything OK but nothing get returned). You can easily grab the item before deleting it and return it as well.
@@ -218,63 +218,63 @@ angular.module('plunker')
   })
   .run(function($httpBackend) {
     var things = [
-      {
-        id: 0,
-        title: 'Finish fake backend',
-        completed: true
-      },
-      {
-        id: 1,
-        title: 'Make some cool stuff',
-        completed: false
-      },
-      {
-        id: 2,
-        title: 'Brainstorm new projects',
-        completed: false
-      }
-    ];
+    {
+      id: 0,
+      title: 'Finish fake backend',
+      completed: true
+    },
+    {
+      id: 1,
+      title: 'Make some cool stuff',
+      completed: false
+    },
+    {
+      id: 2,
+      title: 'Brainstorm new projects',
+      completed: false
+    }
+  ];
+  
+  $httpBackend.whenGET('/api/todos').respond(200, things);
+  
+  $httpBackend.whenPOST('/api/todos').respond(function(method, url, data, headers) {
+    var newItem = JSON.parse(data);
+    newItem.id = things.length;
+    things.push(newItem);
     
-    $httpBackend.whenGET('/api/todos').respond(200, things);
-    
-    $httpBackend.whenPOST('/api/todos').respond(function(method, url, data, headers) {
-      var newItem = JSON.parse(data);
-      newItem.id = things.length;
-      things.push(newItem);
-      
-      return [201, newItem];
-    });
-    
-    $httpBackend.whenPUT(/^\/api\/todos\/\d+$/).respond(function(method, url, data, headers) {
-      var item = JSON.parse(data);
-      for (var i = 0, l = things.length; i < l; i++) {
-        if (things[i].id === item.id) {
-          things[i] = item;
-          break;
-        }
-      }
-      
-      return [200, item];
-    });
-    
-    $httpBackend.whenDELETE(/^\/api\/todos\/\d+$/).respond(function(method, url, data, headers) {
-      var regex = /^\/api\/todos\/(\d+)/g;
-      
-      var id = regex.exec(url)[1]; // First match on the second item.
-      
-      for (var i = 0, l = things.length; i < l; i++) {
-        if (things[i].id === id) {
-          var index = things.indexOf(things[id]);
-          things.splice(index, 1);
-          break;
-        }
-      }
-      
-      return [204];
-    });
-    
-    $httpBackend.whenGET(/\.html/).passThrough();
+    return [201, newItem];
   });
+  
+  $httpBackend.whenPUT(/^\/api\/todos\/\d+$/).respond(function(method, url, data, headers) {
+    var item = JSON.parse(data);
+    for (var i = 0, l = things.length; i < l; i++) {
+      if (things[i].id === item.id) {
+        things[i] = item;
+        break;
+      }
+    }
+    
+    return [200, item];
+  });
+  
+  $httpBackend.whenDELETE(/^\/api\/todos\/\d+$/).respond(function(method, url, data, headers) {
+    var regex = /^\/api\/todos\/(\d+)/g;
+    
+    var id = regex.exec(url)[1]; // First match on the second item.
+    id = parseInt(id, 10);
+    for (var i = 0, l = things.length; i < l; i++) {
+      if (things[i].id === id) {
+        var index = things.indexOf(things[i]);
+        things.splice(index, 1);
+        break;
+      }
+    }
+    
+    return [204];
+  });
+  
+  $httpBackend.whenGET(/\.html/).passThrough();
+});
 ```
 
   As a final example, let's use the Angular example of [todomvc](www.todomvc.com) in a plunker and then plug our fake backend:
