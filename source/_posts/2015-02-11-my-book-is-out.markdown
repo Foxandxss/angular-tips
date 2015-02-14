@@ -10,6 +10,8 @@ categories: [book]
 
 I am pleased to say that my book is now public. It is not finished yet, but it is good enough to get started with it.
 
+You can buy it from [here](https://leanpub.com/angularjsdirectives).
+
 I hope I can get as much feedback as possible (https://github.com/angular-tips/deep-angular-issues) to make the book even better!
 
 Thank you for being there.
