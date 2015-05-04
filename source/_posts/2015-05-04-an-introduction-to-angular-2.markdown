@@ -32,10 +32,10 @@ I got this boilerplate from my friend [Pawel](https://github.com/pkozlowski-open
 
 Let me explain it a bit:
 
-Since `Angular 2` is still not final, it needs a lot of boilerplate to be setup, and this boilerplate do it for you.
+Since `Angular 2` is still not final, it needs a lot of boilerplate to be setup, and this skeleton do it for you.
 
 On one hand, we have the `gulpfile` where apart from the classic tasks to process javascript and css, we have tasks to build both angular and its router from the sources.
-On the other hand, we have the `index.html` file where we load all the needed libraries for `Angular 2`. As I said before, since `Angular 2` is still not final, we have to load a lot of libraries to make it work, but worry not, on the final version it won't need that.
+On the other hand, we have the `index.html` file where we load all the needed libraries for `Angular 2`. As I said before, since `Angular 2` is still not final, we have to load a lot of libraries to make it work, but worry not, on the final version we won't need to do that.
 
 Another interesting thing here is `System`. `System` is the module loader of `ES6` and it is the one which will start our application. Yay, no more hundreds of script tags!
 
@@ -107,7 +107,7 @@ export class App {
 
 For `Component` we specified that the selector for this component will be `words-app` (look mum, no more `camelCase` vs `snake-case` like `Angular 1`), that means that to use this component, we just need to drop a `<words-app></words-app>` somewhere!
 
-For `View` we created a simple template (notice the quotes).
+For this `View` we created a simple template (notice the quotes).
 
 **NOTE**: Don't put semicolons after each annotation, that will make `Angular 2` cry :)
 
@@ -451,7 +451,7 @@ Having the login in place, we need a link for it in our `Home` component:
 </div>
 ```
 
-So having a flag called `isAuth`, we will switch between to divs.
+So having a flag called `isAuth`, we will switch between two divs.
 
 We will need the `Auth` service here as well, so let's import it:
 
@@ -464,7 +464,7 @@ import {Auth} from '../services/auth';
 })
 ```
 
-On the other hand, we need a `login` and `logout` methods, the `isAuth` flag and also a reference to the user. Our component is now like:
+Then we need a `login` and `logout` methods, the `isAuth` flag and also a reference to the user. Our component is now like:
 
 ```javascript home/home.js
 export class Home {
@@ -509,7 +509,7 @@ Alright, now we have the link to the `login` page:
 And if we click it, we... Oh wait, it is not working. Ah, we forgot to add the route for it back at `app.js`:
 
 ```javascript app/app.js
-
+import {Login} from '../login/login';
 
 export class App {
   constructor(router: Router) {
