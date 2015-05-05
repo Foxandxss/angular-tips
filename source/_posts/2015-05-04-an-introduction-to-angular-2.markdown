@@ -19,7 +19,11 @@ $ npm install
 $ node server.js
 ```
 <!--more-->
-**NOTE**: You need node 0.12 or io.js to work with koa.
+**NOTE**: You need node 0.11+ or io.js to work with koa. And if it is node, you need to use the --harmony flag like:
+
+```
+$ node --harmony server.js
+```
 
 Leave it running and clone [this repo](https://github.com/angular-tips/GermanWords-frontend-angular-2). Here we are going to work on the `before` folder. To use it:
 
