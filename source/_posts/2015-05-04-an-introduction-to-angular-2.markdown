@@ -45,7 +45,7 @@ Another interesting thing here is `System`. `System` is the module loader of `ES
 
 Also, there is no more `ng-app` :)
 
-Alright! `System` is going to load `index` which is supposed to bootstrap our app, right? How do we do that? To bootstrap an `Angular 2` application we need to use the `boostrap` method passing our main component. Component? Yeah, we will see in a bit :)
+Alright! `System` is going to load `index` which is supposed to bootstrap our app, right? How do we do that? To bootstrap an `Angular 2` application we need to use the `bootstrap` method passing our main component. Component? Yeah, we will see in a bit :)
 
 ```javascript
 bootstrap(OurMainComponent);
@@ -54,12 +54,13 @@ bootstrap(OurMainComponent);
 For our app, we will have an `App` component so to bootstrap our application, we can do:
 
 ```javascript index.js
+import { bootstrap } from 'angular2/angular2';
 import { App } from './app/app';
 
-boostrap(App);
+bootstrap(App);
 ```
 
-We just need to import our `App` component and then use it to bootstrap the app. Another thing we need to do here is load the router. The router is external to angular 2, so we need to load it as a dependency. As today (2015-05-04) the router is not exporting the needed injectable to make this easy, so we need to construct a new instance of the router and inject it:
+We just need to import our `App` component and the bootstrap method to then use it to bootstrap the app. Another thing we need to do for our app, is to load the router. The router is external to angular 2, so we need to load it as a dependency. As today (2015-05-04) the router is not exporting the needed injectable to make this easy, so we need to construct a new instance of the router and inject it:
 
 ```javascript index.js
 import { bootstrap } from 'angular2/angular2';
@@ -77,7 +78,7 @@ bootstrap(App, [
 
 We loaded all the needed dependencies to construct the router and also the `bind` service to create a Binding for the router. Hopefully this will be fixed really soon.
 
-Okey, let's code the App component. But what's a component? A component is a just a class which can be used to represent a page like `home`, `login`, `users`... or even used to create a `directive` like `datepicker`, `tabs`, etc.
+Okay, let's code the App component. But what's a component? A component is a just a class which can be used to represent a page like `home`, `login`, `users`... or even used to create a `directive` like `datepicker`, `tabs`, etc.
 
 ```javascript app/app.js
 export class App {
@@ -436,7 +437,7 @@ We also need to import this `.css` file:
 ```
 
 Having the login in place, we need a link for it in our `Home` component:
-
+{% raw %}
 ```html home/home.html
 <div class="jumbotron centered">
   <h1>German words demo!</h1>
@@ -454,7 +455,7 @@ Having the login in place, we need a link for it in our `Home` component:
   <a href="#" (click)="login($event)">Login</a>
 </div>
 ```
-
+{% endraw %}
 So having a flag called `isAuth`, we will switch between two divs.
 
 We will need the `Auth` service here as well, so let's import it:
@@ -536,7 +537,7 @@ And if we login with the demo credentials (demo / 12345) we see:
 That's great!
 
 The last step is showing the translation if we are logged in and that is easy to do! We are already grabbing the words from the server and now that the server sees that we are authenticated, it will send the translation as well. That means that we just need to update our template:
-
+{% raw %}
 ```html home/home.html
 <div class="jumbotron centered">
   <h1>German words demo!</h1>
@@ -556,7 +557,7 @@ The last step is showing the translation if we are logged in and that is easy to
   <a href="#" (click)="login($event)">Login</a>
 </div>
 ```
-
+{% endraw %}
 Now we have our app completed:
 
 {% img /images/posts/angular2intro/7.png %}
