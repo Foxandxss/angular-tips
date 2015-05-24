@@ -419,7 +419,7 @@ For the template, we have:
 </div>
 ```
 
-Notice how we have stuff like `#username` instead of `ng-click="username"`. That is how `Angular 2` binds our stuff.
+Notice how we have stuff like `#username` instead of `ng-model="username"`. That is how `Angular 2` binds our stuff.
 
 As a last step, let's modify the css a bit because the form is a bit wide:
 
