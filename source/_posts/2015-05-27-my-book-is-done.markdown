@@ -16,4 +16,6 @@ It will teach you both how to create directives and how to test them.
 
 If you have any issue or feedback, please go to https://github.com/angular-tips/deep-angular-issues
 
+Of course, you can buy it here: http://leanpub.com/angularjsdirectives
+
 Thank you!
