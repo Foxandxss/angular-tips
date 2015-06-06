@@ -6,6 +6,8 @@ comments: true
 categories: [angular2]
 ---
 
+**Note**: If the "foo" alerts from the plunkers starts popping out without reason, please leave a comment and I will look for a different solution.
+
 **DISCLAIMER:** Angular 2 is still in Alpha stage so the syntax I present in here is subject to be changed and|or simplified. I am using Angular 2.0.0-alpha.26. Also, what I write in here is just my opinion and I could be *wrong*.
 
 Angular 2 is around the corner and there are mixed opinions about it. Some people can't wait for it and other people are not any happy with it. Why is that? People are afraid to change, thinking that they wasted their time learning something that is now going to change in a radical way.
@@ -315,6 +317,8 @@ Here we are using the built-in `setTimeout` to change our message. Does it Work?
 <iframe src="http://embed.plnkr.co/QDqM52p6ZX8JVClWykjV/preview" style="width:100%; height:320px" frameborder="0"></iframe>
 
 Of course it does. No more fear when mixing Angular with "non angular" stuff.
+
+We get this feature thanks to Zone.js (Thanks to my good friend [Wesley Cho](https://github.com/wesleycho) for pointing that out).
 
 ## Properties
 
