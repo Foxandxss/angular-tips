@@ -8,7 +8,7 @@ categories: [angular2]
 
 **DISCLAIMER:** Angular 2 is still in Alpha stage so the syntax I present in here is subject to be changed and|or simplified. I am using Angular 2.0.0-alpha.26. Also, what I write in here is just my opinion and I could be *wrong*.
 
-Angular 2 is around the corner and there are mixed opinions about it. Some people can't wait for it and other people is not any happy with it. Why is that? People is afraid to change, thinking that they wasted their time learning something that is now going to change in a radical way.
+Angular 2 is around the corner and there are mixed opinions about it. Some people can't wait for it and other people are not any happy with it. Why is that? People are afraid to change, thinking that they wasted their time learning something that is now going to change in a radical way.
 
 Angular is a great framework, but is is 6 years old, and that for a framework is too much. The web evolved a lot since Angular inception in 2009 and the Angular team can't simply implement those new stuff without breaking half of the actual implementation.
 
@@ -314,7 +314,7 @@ Here we are using the built-in `setTimeout` to change our message. Does it Work?
 
 <iframe src="http://embed.plnkr.co/QDqM52p6ZX8JVClWykjV/preview" style="width:100%; height:320px" frameborder="0"></iframe>
 
-Of course it does. No more fear when mising Angular with "non angular" stuff.
+Of course it does. No more fear when mixing Angular with "non angular" stuff.
 
 ## Properties
 
@@ -428,7 +428,7 @@ For this one you will need to check the console to see that the second `<p>` wil
 
 ## References
 
-Imagine we want to focus an input by clicking somwhere, something like:
+Imagine we want to focus an input by clicking somewhere, something like:
 
 ```html
 <p (click)="...?">
