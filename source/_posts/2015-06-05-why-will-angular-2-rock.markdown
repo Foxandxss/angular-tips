@@ -12,7 +12,7 @@ categories: [angular2]
 
 Angular 2 is around the corner and there are mixed opinions about it. Some people can't wait for it and other people are not any happy with it. Why is that? People are afraid to change, thinking that they wasted their time learning something that is now going to change in a radical way.
 
-Angular is a great framework, but is is 6 years old, and that for a framework is too much. The web evolved a lot since Angular inception in 2009 and the Angular team can't simply implement those new stuff without breaking half of the actual implementation.
+Angular is a great framework, but it is 6 years old, and that for a framework is too much. The web evolved a lot since Angular inception in 2009 and the Angular team can't simply implement those new stuff without breaking half of the actual implementation.
 
 So if they have to break Angular to be able to make it "modern", it is better to write it from scratch. How so? Angular itself has other problems like the complex syntax for directives, 5 types of services that confuses new users, writing stuff in the wrong scope...
 
