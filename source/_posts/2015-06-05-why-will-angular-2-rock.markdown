@@ -225,7 +225,7 @@ angular.module('app')
     link: function(scope, element, attrs) {
       element.on('mouseover', function() {
         console.log(scope.text);
-      }):
+      });
     }
   });
 ```
