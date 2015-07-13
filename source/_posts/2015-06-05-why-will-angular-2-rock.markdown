@@ -465,7 +465,7 @@ Isn't this wonderful? We are avoiding the need of creating extra directives for 
 
 ## Services
 
-Let's create a service to fetch users at Github. What should we use? A Provider? Service? Factory? Value? Constant? I am just kidding. No more service vs factory or value vs constant (As today, I don't know why it is called a constant if it is not constant).
+Let's create a service to fetch users at Github. What should we use? A Provider? Service? Factory? Value? Constant? I am just kidding. No more service vs factory or value vs constant (to this day, I don't understand why it is called a constant if it is not constant).
 
 A service in Angular 2 is simply a...
 
