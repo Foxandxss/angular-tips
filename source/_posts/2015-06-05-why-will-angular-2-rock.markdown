@@ -6,9 +6,11 @@ comments: true
 categories: [angular2]
 ---
 
+**This article has been update in September 1st. Now it is using TypeScript and angular 2.0.0-alpha.36**
+
 **Note**: If the "foo" alerts from the plunkers starts popping out without reason, please leave a comment and I will look for a different solution.
 
-**DISCLAIMER:** Angular 2 is still in Alpha stage so the syntax I present in here is subject to be changed and|or simplified. I am using Angular 2.0.0-alpha.26. Also, what I write in here is just my opinion and I could be *wrong*.
+**DISCLAIMER:** Angular 2 is still in Alpha stage so the syntax I present in here is subject to be changed and|or simplified. I am using Angular 2.0.0-alpha.36. Also, what I write in here is just my opinion and I could be *wrong*.
 
 Angular 2 is around the corner and there are mixed opinions about it. Some people can't wait for it and other people are not any happy with it. Why is that? People are afraid to change, thinking that they wasted their time learning something that is now going to change in a radical way.
 
@@ -104,6 +106,8 @@ We can also use data binding:
   template: `<div>Hello, {{message}}</div>`
 })
 class MyComponent {
+  message: string;
+
   constructor() {
     this.message = 'World';
   }
@@ -112,7 +116,7 @@ class MyComponent {
 {% endraw %}
 We used the class constructor to set a message. No more scopes.
 
-<iframe src="http://embed.plnkr.co/RKIhoVCg90nqNOoARUFS/preview" style="width:100%; height:320px" frameborder="0"></iframe>
+<iframe src="http://embed.plnkr.co/wKeLHZshhPprbQxJ2Km6/preview" style="width:100%; height:320px" frameborder="0"></iframe>
 
 And that is how we create our pages. When we use the new router, we just need to pass a component to it instead of the old template+controller.
 
@@ -200,18 +204,20 @@ Lastly, it needs to trigger on `mouseover`. Alright, so a `.on` call on the elem
   properties: [
     'text: tooltip'
   ],
-  hostListeners: {
-    mouseover: 'show()'
+  host: {
+    '(mouseover)': 'show()'
   }
 })
 class Tooltip {
+  text: string;
+
   show() {
     console.log(this.text);
   }
 }
 ```
 
-I think it is pretty clear, isn't it? On mouse over, we call the `show` function. And that is it. That is our first directive.
+I think it is pretty clear, isn't it? On mouse over, we call the `show` function. And that is it. That is our first directive. We will explain why the parens around `mouseover` in a bit.
 
 They require you to define some properties, but they are much easier to understand than the counterpart in Angular 1:
 
@@ -243,7 +249,7 @@ Try it. Does it work? No.
 There is one of the biggest features in Angular 2 for me. No directive will run in our template if we don't specify it explicity. How?
 {% raw %}
 ```javascript
-import {Tooltip} from 'tooltip';
+import {Tooltip} from './tooltip';
 
 @Component({
   selector: 'my-component'
@@ -253,6 +259,8 @@ import {Tooltip} from 'tooltip';
   directives: [Tooltip]
 })
 class MyComponent {
+  message: string;
+
   constructor() {
     this.message = 'World';
   }
@@ -261,7 +269,7 @@ class MyComponent {
 {% endraw %}
 The `View` annotation has an array called `directives` where we list all the directives we want to use in our template. Here we imported the class `Tooltip` and we listed it on `directives`.
 
-<iframe src="http://embed.plnkr.co/IdykrSNjBCEp33pav0qU/preview" style="width:100%; height:320px" frameborder="0"></iframe>
+<iframe src="http://embed.plnkr.co/4XhUCGMIV2dUUJjRv3km/preview" style="width:100%; height:320px" frameborder="0"></iframe>
 
 Wait a second... does that mean that if I use 10 directives on my template, I need to list all of them? Yes. How is that cool? We won't have more collisions. Let me put an example: In Angular 1 we have two implementations of `Twitter Bootstrap`, `ui-bootstrap` and `AngularStrap`. They both have their issues. Imagine you use `ui-bootstrap` on a daily basis but then find that the `tooltip` is not enough for our purposes and then we discover that `AngularStrap` has a better `tooltip`. You pull that library in and you use its tooltip.
 
@@ -289,6 +297,8 @@ Isn't it much better? No collision at all.
 
 `AngularStrap` fixed this issue long ago prefixing their directives with `bs-`, but in Angular 2 even when that is still recommended to prefix your directives, the end users won't have to deal with your bad decisions.
 
+If you're not convinced enough at this point, you can import `CORE_DIRECTIVES` from `angular2/angular2` and use that to import all core directives in your component.
+
 ## $apply() what's that?
 
 Dollar apply, well, I would like to apply for some dollars. Jokes aside. How many times did you forgot to use `$apply()`? Checking our code for hours to then realize that we forgot to use `$apply()` and our bindings weren't updating.
@@ -304,9 +314,11 @@ Not anymore. Imagine this component:
   template: `<div>Hello, {{message}}</div>`
 })
 class MyComponent {
+  message: string;
+
   constructor() {
     this.message = 'World';
-    setTimeout(() => this.message = 'Angular-tips', 1000);
+    setTimeout(() => this.message = 'Angular-tips', 2000);
   }
 }
 ```
@@ -314,7 +326,7 @@ class MyComponent {
 
 Here we are using the built-in `setTimeout` to change our message. Does it Work?
 
-<iframe src="http://embed.plnkr.co/QDqM52p6ZX8JVClWykjV/preview" style="width:100%; height:320px" frameborder="0"></iframe>
+<iframe src="http://embed.plnkr.co/AI2HiH11KS3q4Pwlhc2A/preview" style="width:100%; height:320px" frameborder="0"></iframe>
 
 Of course it does. No more fear when mixing Angular with "non angular" stuff.
 
@@ -335,11 +347,11 @@ The browser will parse the input element and create a node object. Then it will 
 If we write on that input again, the `value property` will be updated but the original `value attribute` will not. That attribute was used just to initialize the node object.
 
 If you used the `<img>` tag in the past, you found this issue:
-
+{% raw %}
 ```html
 <img src="{{foo}}">
 ```
-
+{% endraw %}
 The browser parse it, and will try to fetch the image called {% raw %}`{{foo}}`{% endraw %} and then when the angular runs, it will interpolate that {% raw %}`{{foo}}`{% endraw %} so the browser will be able to fetch the image this time. To fix that, the angular team created `ng-src`. The browser doesn't know what it is, so it is angular the one who will create the `src` property with the correct value.
 
 We have this same issue with other directives like `ng-class`, `ng-show`, `ng-hide`, `ng-bind`, etc. Again, we have a bunch of directives that will prevent the browser from creating "broken" properties by creating the properties themselves with the correct values.
@@ -373,11 +385,13 @@ No more interpolation because we are now writing to the property directly. Remem
   properties: [
     'text: tooltip'
   ],
-  hostListeners: {
-    mouseover: 'show()'
+  host: {
+    '(mouseover)': 'show()'
   }
 })
 class Tooltip {
+  text: string;
+
   show() {
     console.log(this.text);
   }
@@ -392,7 +406,7 @@ It has a list of properties! That means that we can pass a dynamic text to it li
 
 That won't pass `foo` as the text, it will pass the content of `this.foo` as the text. And the best part, we didn't need to modify our directive.
 
-<iframe src="http://embed.plnkr.co/Cc6mysx09KjcJqixyz6X/preview" style="width:100%; height:320px" frameborder="0"></iframe>
+<iframe src="http://embed.plnkr.co/DhG913Aenx7Y8SNCKUq3/preview" style="width:100%; height:320px" frameborder="0"></iframe>
 
 Now, we won't be confused anymore of when to use interpolation or not.
 
@@ -426,9 +440,19 @@ Also, thanks to this, we can get rid of unneeded directives like `ng-click`, `ng
 
 That will use the `click` event of the DOM, no more wrappers around that. As an extra, if that `doSomething` doesn't exist, angular will throw an error.
 
-<iframe src="http://embed.plnkr.co/FmOh5a9oazzO14iLubP9/preview" style="width:100%; height:320px" frameborder="0"></iframe>
+<iframe src="http://embed.plnkr.co/MCW90ltXoccRvWtWbQDT/preview" style="width:100%; height:320px" frameborder="0"></iframe>
 
 For this one you will need to check the console to see that the second `<p>` will trigger an error.
+
+Also, you will now understand this code from the tooltip:
+
+```javascript
+host: {
+  '(mouseover)': 'show()'
+}
+```
+
+It is an event after all ;)
 
 ## References
 
@@ -453,15 +477,23 @@ With `#user`, we are simply creating a reference to the input, so now we can do 
 <p (click)="user.focus()">
   Grab focus
 </p>
-<input type="text" #user (keyup)>
-{{user.value}}
+<input type="text" #user [(ng-model)]="name">
+{{name}}
 ```
 {% endraw %}
-Now upon click, we call the `focus()` method on the node so it will grab the focus. The `(keyup)` in there tells the input to update its value on keyup.
+Now upon click, we call the `focus()` method on the node so it will grab the focus.
 
 Isn't this wonderful? We are avoiding the need of creating extra directives for something as simple as this.
 
-<iframe src="http://embed.plnkr.co/NURR26HIsJMPQYBZpXQH/preview" style="width:100%; height:320px" frameborder="0"></iframe>
+<iframe src="http://embed.plnkr.co/bkJNJy0Ts4qnC590wNu3/preview" style="width:100%; height:320px" frameborder="0"></iframe>
+
+Wait a second, that example is nice, that for sure, but what is that `[(ng-model)]` syntax? Let see it step by step:
+
+```html
+<input type="text" [ng-model]="name" (ng-model)="name=$event"></input>
+```
+
+Here we are using the new `ng-model`. If we remember from an early point, with `[foo]` we set some property in our directive, and with (foo) we can fire some event (for example, send a value to the parent). With this example, we are setting `name` to be the value of the `ng-model` using `[ng-model]="name"`. Then we are creating an event to update the name in the parent with `(ng-model)="name=$event"`. That is good but verbose. Angular 2 let us mix them both like `[(ng-model)]="name"` so we are actually doing **two-way databinding!**
 
 ## Services
 
@@ -477,7 +509,7 @@ class GithubNames {
 
 Class! You guessed it correctly. But this time, no annotations :)
 
-Angular 2 doesn't have anything to do http request (but it will in a future), but worry not, ES6 comes with a library called "fetch" and Angular 2 doesn't care if the service is made for Angular or not:
+Angular 2 has a service for http, but for the sake of showing how to use a third party library, we will use the new library taht comes with ES6 called `fetch`.
 
 ```javascript
 class GithubNames {
@@ -494,7 +526,7 @@ We simply use `fetch` to grab those users and send the `json` response back. Tha
 How can we use it? If the service is in a different file, for example one called 'github', we have to import it:
 
 ```javascript
-import {GithubNames} from 'github';
+import {GithubNames} from './github';
 ```
 
 Then, we tell our component that we want to inject that:
@@ -502,7 +534,7 @@ Then, we tell our component that we want to inject that:
 ```javascript
 @Component({
   selector: 'my-component',
-  appInjector: [GithubNames]
+  viewBindings: [GithubNames]
 })
 ```
 
@@ -515,8 +547,6 @@ constructor(github: GithubNames) {
 ```
 
 The syntax used in here, is just a syntactic sugar for the injector and it uses TypeScript typing to achieve that. It is something like: "Hey, we are injecting the class `GithubNames`, create a instance for me and call it `github`".
-
-**NOTE**: Even when we are using ES6 in all this demos, the traceur that plunker uses, is capable to do understand this typings.
 
 Alright, now we have `GithubNames` injected and saved in our class.
 
@@ -548,9 +578,9 @@ Uh, that is our new `ng-repeat` and that `#user` sounds like the reference we cr
 
 The `*` for `ng-for` is another syntactic sugar. No need to dig in that for this article.
 
-And please, don't forget to import `NgFor` into our file and fill the `directives` array with it, because without it, it won't work ;)
+And please, don't forget to import `NgFor` (or directly CORE_DIRECTIVES) into our file and fill the `directives` array with it, because without it, it won't work ;)
 
-<iframe src="http://embed.plnkr.co/Ges1835FIzqetpbPtt1D/preview" style="width:100%; height:320px" frameborder="0"></iframe>
+<iframe src="http://embed.plnkr.co/4MbMaKO57mNytDjJ5neV/preview" style="width:100%; height:320px" frameborder="0"></iframe>
 
 ## Overpowered outlets
 
