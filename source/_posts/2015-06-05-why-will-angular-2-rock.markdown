@@ -509,7 +509,7 @@ class GithubNames {
 
 Class! You guessed it correctly. But this time, no annotations :)
 
-Angular 2 has a service for http, but for the sake of showing how to use a third party library, we will use the new library taht comes with ES6 called `fetch`.
+Angular 2 has a service for http, but for the sake of showing how to use a third party library, we will use the new library that comes with ES6 called `fetch`.
 
 ```javascript
 class GithubNames {
