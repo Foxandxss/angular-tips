@@ -6,9 +6,9 @@ comments: true
 categories: [angular2, directives]
 ---
 
-`Angular 2` is just around the corner and people are still afraid because `Angular 2` changes too much, and it will be hard to migrate. That is not true at all, in fact you will see in this article just how easy `Angular 2` is.
+`Angular 2` it is just around the corner and people are still afraid because `Angular 2` changes too much and it will hard to migrate. That is not true at all, in fact you will see how easy is `Angular 2` by highlighting the semantic shift between those two.
 
-Let's migrate a directive from Angular 1 to Angular 2. I love accordions, everybody loves accordions! Let's migrate `ui-bootstrap` accordion to `Angular 2`. I can't assume that you're familiar with the `ui-bootstrap` accordion, so we will code both versions at the same time, explaining the differences along the way. I highly recommend that you replicate for yourself the `Angular 2` one at least.
+Let's migrate a directive from Angular 1 to Angular 2. I love accordions, everybody love accordions! Let's migrate `ui-bootstrap` accordion to `Angular 2`. I can't assume that you're familiar with it, so we are code both at the same time, explaining the differences along the way. I highly recommend you to, at least, replicate yourself the `Angular 2` one.
 
 Use this [plunker](http://plnkr.co/edit/A9czCqlltHcd4jx8aUdY?p=catalogue) to code the `Angular 1` version.
 
@@ -16,7 +16,7 @@ Use this [plunker](http://plnkr.co/edit/yEEt0pXjAtMivUa0keYe?p=catalogue) to cod
 <!--more-->
 ## Designing our accordion
 
-Our accordion will be composed of 2 directives. The first one will be an element called `<accordion>` which will host one or many `<accordion-group>` elements. Each `<accordion-group>` will contain a `heading` which is the clickable area that will allow us to toggle each group. The content that we put inside the `<accordion-group>`, will be its content. So without messing too much with the syntax now, the idea is to have something like:
+Our accordion will be composed of 2 directives. The first one will be an element called `<accordion>` which will host one or many `<accordion-group>`. Each `<accordion-group>` will contain a `heading` which is the clickable area that will allow us to toggle each group. The content that we put inside the `<accordion-group>`, will be its content. So without messing too much with the syntax now, the idea is to have something like:
 
 ```html
 <accordion>
@@ -29,11 +29,11 @@ Our accordion will be composed of 2 directives. The first one will be an element
 </accordion>
 ```
 
-The `<accordion>` will contain an option to force other groups to close (to just leave one open) and each `<accordion-group>` can be toggled by code. Sounds like a plan.
+The `<accordion>` will contain an option to force other groups to close (to just leave one open) and each `<accordion-group>` can be toggle by code. Sounds like a plan.
 
 ## Coding the accordion directive in Angular 1
 
-First we need to code the `<accordion>` directive that will wrap all our groups. Let's start with the basic skeleton:
+First we need to code the `<accordion>` directive that will wrap all our groups. Let's code the basic skeleton:
 
 ```javascript accordion.js
 angular.module('app')
@@ -45,7 +45,7 @@ angular.module('app')
   });
 ```
 
-The objective of the `<accordion>` directive is to be a "wrapper" of groups, so for now we just need a template to put those groups inside. What does `bootstrap` say about this template? It needs to be a `<div>` with the `panel-group` class. Something like:
+The objective of the `<accordion>` directive is to be a "wrapper" of groups, so for now we just need a template to put those groups. What does `bootstrap` say about this template? It needs to be a `<div>` with the `panel-group` class. Something like:
 
 ```html
 <div class="panel-group"></div>
@@ -84,9 +84,9 @@ If we execute it now, we just get an empty `<div>`.
 
 ## Coding the accordion directive in Angular 2
 
-We are used to coding directives for everything. In Angular a directive is something we add to our HTML, it doesn't matter if it is an element that generates some content (like an accordion or an alert box) or if it is an attribute to add / modify some behavior (like a validation directive, ng-model, etc).
+We are used to code directives for everything. In Angular a directive is something we add to our HTML, it doesn't matter if it is an element that generates some content (like an accordion or an alert box) or if it is an attribute to add / modify some behavior (like a validation directive, ng-model, etc).
 
-In `Angular 2` we have several types of directives, the most common one is the `Component` directive which is a type of directive that has a view. Here we don't have a `.directive` function like in `Angular 1`, instead we have simple classes which get annotated to give them a certain behavior. Let's import the annotations we need for a `Component`:
+In `Angular 2` we have several types of directives, the most common one is the `Component` directive which is type of directive that has a view. Here we don't have a `.directive` function like in `Angular 1`, instead we have simple classes that gets annotated to give them a certain behavior. Let's import the annotations we need for a `Component`:
 
 ```javascript accordion.ts
 import {Component, View} from 'angular2/angular2';
@@ -114,7 +114,7 @@ Now our `Accordion` class is a `Component`. We need to customize the annotation 
 * **.class**: that will restrict for a class.
 * **input[type=text]**: that will apply this directive only in a `<input type="text">`.
 
-This serves the same purpose as the `restrict` option in `Angular 1`, but here we have more flexibility. We can not only restrict it by element or attributes like we used to, but also restrict it to certain types of elements or give a different name depending on where we use it. There are more options apart from those 4, but that is outside the scope of the article.
+This serves the same purpose as the `restrict` option in `Angular 1`, but here we have more flexibility. We can not only restrict it by element or attributes like we used to, but also restrict it to certain types of elements or give a different name depending in where we use it. There are more options apart from those 4, but that is outside the scope of the article.
 
 Ok, so we want to restrict it to elements and attributes and both with the same name:
 
@@ -139,7 +139,7 @@ import {Component, View} from 'angular2/angular2';
 export class Accordion {}
 ```
 
-We can either have our template inline (with `template`), or in an external file (with `templateUrl`).
+We can both have our template inline (with `template`) or in a external file (with `templateUrl`).
 
 A component needs to have one `Component` annotation and one or *more* `View` annotations. Wait, one or more? Yes, you can have a `View` for desktop, a `View` for mobiles, etc.
 
@@ -147,7 +147,7 @@ All we need now is to code write our template to be able to transclude our stuff
 
 ## "Transclusion" in Angular 2
 
-First things first, go to all your dictionaries and delete the "Transclusion" entry that you added a long time ago. There is no more transclusion in Angular 2. As you might know, Angular 2 directives are `web components` and with web components we have a concept called `Shadow DOM`. I won't go into details (you can learn more about that [here](http://www.html5rocks.com/en/tutorials/webcomponents/shadowdom/)), but basically it allows us to create reusable components which encapsulate some content and behavior (Like our directives, right? :)). Thanks to the `Shadow DOM` we can "project" (transclude) the content we need from our `Component` element into its template with `<content>`. That means that where in the past we used `ng-transclude`, we now use `<content>`:
+First thing first, go to all your dictionaries and delete the "Transclusion" entry that you added long time ago. There is no more transclusion in Angular 2. As you might now, Angular 2 directives are `web components` and with web components we have a concept called `Shadow DOM`. I won't go into details (you can learn more about that [here](http://www.html5rocks.com/en/tutorials/webcomponents/shadowdom/)), but basically it allows us to create reusable components which encapsulates some content and behavior (Like our directives, right? :)). Thanks to the `Shadow DOM` we can "project" (transclude) the content we need from our `Component` element into its template with `<content>`. That means that when in the past we had to use `ng-transclude`, we use `<content>` now:
 
 ```html
 <div class="panel-group">
@@ -161,7 +161,7 @@ Now if we do something like:
 <accordion>Foo</accordion>
 ```
 
-The `<content>` element in the template will be replaced with `Foo`. Since not all browsers support `Shadow DOM` yet, `Angular 2` has a `<ng-content>` element that does the same job. Once the browsers get proper `Shadow DOM` support, you can switch to `<content>` without any problem.
+The `<content>` element in the template will be replaced with `Foo`. Since not all browsers supports `Shadow DOM` as today, `Angular 2` has a `<ng-content>` element that does the same work. Once the browsers gets proper `Shadow DOM` support, you can switch to `<content>` without any problem.
 
 The good thing about `<content>`/`<ng-content>` is that in contrast to `ng-transclude`, you can have several of them in one template. For example:
 
@@ -170,7 +170,7 @@ The good thing about `<content>`/`<ng-content>` is that in contrast to `ng-trans
 <ng-content select="[foo]"></ng-content>
 ```
 
-There it will project all the elements with the `foo` class into the first `ng-content` and the elements with the `foo` directive. That gives much, much more flexibility versus `ng-transclude`. No more dummy directives to create extra transclusion points!
+There it will project all the elements with the `foo` class into the first `ng-content` and the elements with the `foo` directive. That gives much much flexibility versus `ng-transclude`. No more dummy directives to create extra transclusion points!
 
 ## Coding the accordion template
 
@@ -184,9 +184,9 @@ Now that we have more knowledge about `<ng-content>`, we can write our template:
 
 Thanks to this, our groups will be projected into that `<ng-content>`.
 
-Something important to note here is that we cannot add attributes like classes to the `<ng-content>` element because it will be replaced. No point in adding stuff to something that will disappear, right? Because of that, we had to create a `div` wrapper because we really need that `panel-group` class.
+Something important in here is that we cannot add attributes like classes to the `<ng-content>` and that is because it will be replaced. No point to add stuff to something that will disappear, right? Because of that, we had to create a `div` wrapper because we really need that `panel-group` class.
 
-The problem with this is that we are going to end up with:
+The problem with this is that we are going to end with:
 
 ```html
 <accordion class="ng-binding">
@@ -246,7 +246,7 @@ That alone won't do the job, because now in Angular 2, we need to specify which 
 })
 ```
 
-It is more manual than Angular 1, but this gives us much more flexibility and we won't have directive name conflicts any more.
+It is more manual than Angular 1, but this gives us much more flexibility and we won't have more directives' name conflicts.
 
 ## Coding the accordion-group directive in Angular 1
 
@@ -269,7 +269,7 @@ Now we need the directive that we are going to transclude into that parent `acco
 });
 ```
 
-Our group needs a `heading` string and also we need to transclude the group content into the template. Also, we need a function that will toggle our `isOpen` variable. For the template:
+Our groups needs a `heading` string and also we need to transclude the group content into the template. Also, we need a function that will toggle our `isOpen` variable. For the template:
 {% raw %}
 ```html accordion-group.html
 <div class="panel panel-default">
@@ -336,7 +336,7 @@ export class AccordionGroup {
 }
 ```
 
-We have our `Component` annotation, but this time it also has a `properties` property. There we can specify that we can use a *heading* attribute in our component and that will be mapped to a `heading` variable in our Component. We can consider these `properties` similar to our `scope` in the Angular 1 version. Only that this time we don't have those weird `=` / `@` and `&`. Simple.
+We have our `Component` annotation but this time it also has a `properties` property. There we can specify that we can use a *heading* attribute in our component and that will be mapped to a `heading` variable in our Component. We can see this `properties` a bit like our `scope` in the Angular 1 version. Only that this time we don't have those weird `=` / `@` and `&`. Simple.
 
 In our `View` annotation, we specify the template to use, and since that template will use the `ng-class` directive, we need to add it to the array.
 
@@ -365,7 +365,7 @@ The template is pretty much the same:
 </div>
 ```
 {% endraw %}
-Here we have that `ng-class` that we declared on our `View` (more on the syntax in a bit), a `click` event for the toggle, a `hidden` property (which substitutes the `ng-show` we had) and again, an `<ng-content>` to project our group's content into.
+Here we have that `ng-class` that we declared on our `View` (more on the syntax in a bit), a `click` event for the toggle, a `hidden` property (which substitutes the `ng-show` we had) and again, an `<ng-content>` to project our group's content.
 
 We can now use it in our app. First, we need to import the new component:
 
@@ -439,13 +439,13 @@ Now if we set a `isScope` variable in our controller:
 });
 ```
 
-That will make our first group open at startup.
+That will make our first group to open at startup.
 
-The issue with this again is the syntax in that we need to decide beforehand how we want that attribute to be used so we can code it. The problem is that end users could have different ideas and use it wrong. Not their fault tho.
+The issue with this again is the syntax is that we need to decide beforehand how do we want that attribute to be used so we can code it. The problem is that end users could have different ideas and use it wrong. Not their fault tho.
 
 ## Opening groups dynamically in Angular 2
 
-In Angular 2, we don't need to ask any question. You want a `isOpen` attribute? Put it on the `Component`:
+In Angular 2, we don't need to make any question. You want a `isOpen` attribute? Put it on the `Component`:
 
 ```javascript accordion.ts
 @Component({
@@ -483,11 +483,13 @@ export class MyApp {
 
 Much easier, isn't it?
 
+Worth mentioning that even when this `properties` array seems to be analogous on how we do two way binding in angular, changing `isScope` by toggling, won't change the parent's model, in other words, MyApp's `isOpen` won't change.
+
 ## Closing other groups in Angular 1
 
 The most common behavior on an accordion is to close the other groups when we open one. Ok, how can we code that? A group doesn't see another group, but the accordion itself has all children within. Can we use that? Sure.
 
-This is a two part idea. First we need to be able to somehow register all our groups within the accordion. In Angular, we can `require` a parent directive. By doing that, we are actually getting access to that directive's controller. Alright, let's create a controller for the accordion that is able to register groups:
+This is a two parts idea. First we need to be able to somehow register all our groups within the accordion. In Angular, we can `require` a parent directive. By doing that, we are actually getting access to that directive's controller. Alright, let's create a controller for the accordion that is able to register groups:
 
 ```javascript accordion.js
 .directive('accordion', function() {
@@ -506,7 +508,7 @@ This is a two part idea. First we need to be able to somehow register all our gr
 
 Ideally this controller would be "external" but this works for the demo. We just need a groups array and a method to add groups. We just need a reference to their scope to make this work.
 
-Now the groups need to call this method on startup:
+Now the groups needs to call this method on startup:
 
 ```javascript accordion.js
 .directive('accordionGroup', function() {
@@ -525,7 +527,7 @@ Now the groups need to call this method on startup:
 ```
 
 
-Notice that we had to `require` our `accordion` directive in order to be able to access its controller. Now, we need a method on that controller that will close all groups except the one being opened:
+Noticed that we had to `require` our `accordion` directive in order to be able to access its controller. Now, we need a method on that controller that will close all groups except the one being opened:
 
 ```javascript accordion.js
 controller: function() {
@@ -555,7 +557,7 @@ Now that function will be called when `isOpen` changes and it will close the oth
 
 ## Closing other groups in Angular 2
 
-In Angular 2 this is done a bit simpler. We need to be able to register groups as well, but in this case we don't have controllers, so the code goes inside the `Accordion` class:
+In Angular this is done a bit simpler. We need to be able to register groups as well, but in this case we don't have controllers, so the code goes inside the `Accordion` class:
 
 ```javascript accordion.ts
 export class Accordion {
@@ -584,7 +586,7 @@ export class AccordionGroup {
 
 By injecting it, we get access to it so we just need to call its `addGroup` method.
 
-To close the others, we need another method on the `Accordion` class:
+For the close others, another method on the `Accordion` class:
 
 ```javascript accordion.ts
 export class Accordion {
@@ -623,7 +625,7 @@ export class AccordionGroup {
 
 Here, we initialize a private `isOpen` variable to false, and every time we set `isOpen` (in any way), the setter will be called and it will call `closeOthers`.
 
-Works like a charm. The good part in here is that we don't have anymore those `link` vs `controller` wars. When to use `link` vs when to use `controller`. We just have our class and nothing else.
+Works like a charm. The good part in here is that we don't have anymore those `link` vs `controller` wars. When to use `link`, when to use `controller`. We just have our class and nothing else.
 
 # Removing groups in Angular 1
 
@@ -778,15 +780,15 @@ Notice that nice `ng-for` in there to generate multiple groups. The syntax is a 
 
 ## Conclusions
 
-We have seen that migrating an Angular directive to Angular 2 is not that problematic. We just need to learn a couple of new things, but in the end, we can see how Angular 2 simplifies lot of stuff:
+We have seen that migrating an Angular directive to Angular 2 is not that problematic. We just need to learn a couple of new things, but at the end, we can see how Angular 2 simplifies lot of stuff:
 
 * No more `Controllers` or `Link` functions.
-* Even though the new html syntax is weird at first, it makes our directive really straightforward to use.
+* Even when the new html syntax is weird at first, makes our directive really straightforward to use.
 * No more `=`, `@` and `&`.
 * Using a parent directive is as easy as injecting it.
-* Lots of lifecycle hooks to easily customize our directives.
-* Much more variety of selector types.
-* Saying goodbye to... isolated scope or not?
+* Lot of lifecycle hooks to customize easily our directives.
+* Much more variety of selectors types.
+* No need to worry on whether to create a directive with isolated scope or not.
 * "Transclusion" makes much much sense now.
 
 And we only covered the tip of the iceberg. There are lots and lots of new cool things, like dynamic loading a directive.
