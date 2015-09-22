@@ -763,7 +763,7 @@ And its html:
   </button>
 </p>
 
-<accordion close-others="true">
+<accordion>
   <accordion-group heading="This is the header" is-open="true">
     This is the content
   </accordion-group>
