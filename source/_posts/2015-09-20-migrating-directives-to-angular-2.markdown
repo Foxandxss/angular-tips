@@ -799,4 +799,6 @@ Check the end result of the [ng1 version](http://plnkr.co/edit/tYPUDDJwFMsjWjyDz
 
 Check the end result of the [ng2 version](http://plnkr.co/edit/PvKuiBon0PpM6sNSehc6).
 
+I also wrote an ng2 version with [ES5](http://plnkr.co/edit/nxy7dzUgUK7lktUyhErh?p=preview). You can see what a nice job the team did to make the syntax as close as possible to what we can achieve with ES6 or TypeScript.
+
 I have also a much more complete version of the ng2 one, but the article was getting too long to cover them all. Still, be sure to check [it](http://plnkr.co/edit/XuH7mXBycODO7KYgNSbH) time to time while I update it with new features.
