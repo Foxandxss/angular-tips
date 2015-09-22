@@ -147,7 +147,7 @@ All we need now is to code write our template to be able to transclude our stuff
 
 ## "Transclusion" in Angular 2
 
-First thing first, go to all your dictionaries and delete the "Transclusion" entry that you added long time ago. There is no more transclusion in Angular 2. As you might now, Angular 2 directives are `web components` and with web components we have a concept called `Shadow DOM`. I won't go into details (you can learn more about that [here](http://www.html5rocks.com/en/tutorials/webcomponents/shadowdom/)), but basically it allows us to create reusable components which encapsulates some content and behavior (Like our directives, right? :)). Thanks to the `Shadow DOM` we can "project" (transclude) the content we need from our `Component` element into its template with `<content>`. That means that when in the past we had to use `ng-transclude`, we use `<content>` now:
+First thing first, go to all your dictionaries and delete the "Transclusion" entry that you added long time ago as there is no more transclusion in Angular 2. Web Components have a feature called `Shadow DOM` (you can learn more about that [here](http://www.html5rocks.com/en/tutorials/webcomponents/shadowdom/)). One of the thing we can do with the it is be able to "project" (transclude) the content we need from our `Component` element into its template with `<content>`. That means that when in the past we had to use `ng-transclude`, we use `<content>` now:
 
 ```html
 <div class="panel-group">
@@ -161,7 +161,7 @@ Now if we do something like:
 <accordion>Foo</accordion>
 ```
 
-The `<content>` element in the template will be replaced with `Foo`. Since not all browsers supports `Shadow DOM` as today, `Angular 2` has a `<ng-content>` element that does the same work. Once the browsers gets proper `Shadow DOM` support, you can switch to `<content>` without any problem.
+The `<content>` element in the template will be replaced with `Foo`. The directives in Angular 2 are not Web Components, they just work like Web Components. So for our `Components` we have a our own version of `<content>` called `<ng-content>`.
 
 The good thing about `<content>`/`<ng-content>` is that in contrast to `ng-transclude`, you can have several of them in one template. For example:
 
