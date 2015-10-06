@@ -5,12 +5,13 @@ date: 2015-09-20 17:53
 comments: true
 categories: [angular2, directives]
 ---
+** Article updated on Oct 6 for Angular 2 alpha 38.**
 
 `Angular 2` it is just around the corner and people are still afraid because `Angular 2` changes too much and it will hard to migrate. That is not true at all, in fact you will see how easy is `Angular 2` by highlighting the semantic shift between those two.
 
 Let's migrate a directive from Angular 1 to Angular 2. I love accordions, everybody love accordions! Let's migrate `ui-bootstrap` accordion to `Angular 2`. I can't assume that you're familiar with it, so we are code both at the same time, explaining the differences along the way. I highly recommend you to, at least, replicate yourself the `Angular 2` one.
 
-Use this [plunker](http://plnkr.co/edit/A9czCqlltHcd4jx8aUdY?p=catalogue) to code the `Angular 1` version.
+Use this [plunker](http://plnkr.co/edit/cAVyTIWCdbVOZR7WdELl?p=catalogue) to code the `Angular 1` version.
 
 Use this [plunker](http://plnkr.co/edit/yEEt0pXjAtMivUa0keYe?p=catalogue) to code the `Angular 2` version.
 <!--more-->
@@ -322,7 +323,7 @@ We won't have much problem migrating this to Angular 2. Let's see it:
 ```javascript accordion.ts
 @Component({
   selector: 'accordion-group, [accordion-group]',
-  properties: ['heading']
+  inputs: ['heading']
 })
 @View({
   templateUrl: 'src/accordion-group.html',
@@ -336,7 +337,7 @@ export class AccordionGroup {
 }
 ```
 
-We have our `Component` annotation but this time it also has a `properties` property. There we can specify that we can use a *heading* attribute in our component and that will be mapped to a `heading` variable in our Component. We can see this `properties` a bit like our `scope` in the Angular 1 version. Only that this time we don't have those weird `=` / `@` and `&`. Simple.
+We have our `Component` annotation but this time it also has a `inputs` property. There we can specify that we can use a *heading* attribute in our component and that will be mapped to a `heading` variable in our Component. We can see this `inputs` as a way to introduce (input) stuff into our directives. There is also a `ouputs` property, but since this directive doesn't output anything, we won't see it.
 
 In our `View` annotation, we specify the template to use, and since that template will use the `ng-class` directive, we need to add it to the array.
 
@@ -450,7 +451,7 @@ In Angular 2, we don't need to make any question. You want a `isOpen` attribute?
 ```javascript accordion.ts
 @Component({
   selector: 'accordion-group, [accordion-group]',
-  properties: ['heading', 'isOpen']
+  inputs: ['heading', 'isOpen']
 })
 ```
 
@@ -483,7 +484,7 @@ export class MyApp {
 
 Much easier, isn't it?
 
-Worth mentioning that even when this `properties` array seems to be analogous on how we do two way binding in angular, changing `isScope` by toggling, won't change the parent's model, in other words, MyApp's `isOpen` won't change.
+Worth mentioning that even when this `inputs` array seems to be analogous on how we do two way binding in angular, changing `isScope` by toggling, won't change the parent's model, in other words, MyApp's `isOpen` won't change. Now with Angular-2.0.0-alpha.38 this is a bit clearer. In the past, the `inputs` array was named `properties` so it could confuse the users whether that gives you two-way databinding or not. Now we can see that it only serves as `input`.
 
 ## Closing other groups in Angular 1
 
