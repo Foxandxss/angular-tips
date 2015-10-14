@@ -6,11 +6,11 @@ comments: true
 categories: [angular2]
 ---
 
-**This article has been update in September 1st. Now it is using TypeScript and angular 2.0.0-alpha.36**
+**This article has been update in October 14th. Now it is using TypeScript and angular 2.0.0-alpha.42**
 
 **Note**: If the "foo" alerts from the plunkers starts popping out without reason, please leave a comment and I will look for a different solution.
 
-**DISCLAIMER:** Angular 2 is still in Alpha stage so the syntax I present in here is subject to be changed and|or simplified. I am using Angular 2.0.0-alpha.36. Also, what I write in here is just my opinion and I could be *wrong*.
+**DISCLAIMER:** Angular 2 is still in Alpha stage so the syntax I present in here is subject to be changed and|or simplified. I am using Angular 2.0.0-alpha.42. Also, what I write in here is just my opinion and I could be *wrong*.
 
 Angular 2 is around the corner and there are mixed opinions about it. Some people can't wait for it and other people are not any happy with it. Why is that? People are afraid to change, thinking that they wasted their time learning something that is now going to change in a radical way.
 
@@ -116,7 +116,7 @@ class MyComponent {
 {% endraw %}
 We used the class constructor to set a message. No more scopes.
 
-<iframe src="http://embed.plnkr.co/wKeLHZshhPprbQxJ2Km6/preview" style="width:100%; height:320px" frameborder="0"></iframe>
+<iframe src="http://embed.plnkr.co/RQcsl4B6gRZ6aYVgK1gC/preview" style="width:100%; height:320px" frameborder="0"></iframe>
 
 And that is how we create our pages. When we use the new router, we just need to pass a component to it instead of the old template+controller.
 
@@ -172,12 +172,12 @@ A tooltip needs a text do display, right? Makes sense to just use the `tooltip` 
 
 In Angular 1 we could use an isolated scope or maybe grab the `tooltip` attribute in the `link` function and assign it to the scope.
 
-In Angular 2, we have a `properties` array where we define those:
+In Angular 2, we have a two different things. We have `inputs` and `outputs`. Inputs are what we give to the directive, in this case, the text we want to display:
 
 ```javascript
 @Directive({
   selector: '[tooltip]',
-  properties: [
+  inputs: [
     'text: tooltip'
   ]
 })
@@ -189,7 +189,7 @@ class Tooltip {
 Here, we are saying that we want the `tooltip` attribute to be mapped to `this.text`. A cool thing we can do here is something like:
 
 ```javascript
-properties: [
+inputs: [
   'text: tooltip | capitalize'
 ]
 ```
@@ -201,7 +201,7 @@ Lastly, it needs to trigger on `mouseover`. Alright, so a `.on` call on the elem
 ```javascript
 @Directive({
   selector: '[tooltip]',
-  properties: [
+  inputs: [
     'text: tooltip'
   ],
   host: {
@@ -269,7 +269,7 @@ class MyComponent {
 {% endraw %}
 The `View` annotation has an array called `directives` where we list all the directives we want to use in our template. Here we imported the class `Tooltip` and we listed it on `directives`.
 
-<iframe src="http://embed.plnkr.co/4XhUCGMIV2dUUJjRv3km/preview" style="width:100%; height:320px" frameborder="0"></iframe>
+<iframe src="http://embed.plnkr.co/736JsNhe99PXFVrKos88/preview" style="width:100%; height:320px" frameborder="0"></iframe>
 
 Wait a second... does that mean that if I use 10 directives on my template, I need to list all of them? Yes. How is that cool? We won't have more collisions. Let me put an example: In Angular 1 we have two implementations of `Twitter Bootstrap`, `ui-bootstrap` and `AngularStrap`. They both have their issues. Imagine you use `ui-bootstrap` on a daily basis but then find that the `tooltip` is not enough for our purposes and then we discover that `AngularStrap` has a better `tooltip`. You pull that library in and you use its tooltip.
 
@@ -295,7 +295,7 @@ class MyComponent {
 
 Isn't it much better? No collision at all.
 
-`AngularStrap` fixed this issue long ago prefixing their directives with `bs-`, but in Angular 2 even when that is still recommended to prefix your directives, the end users won't have to deal with your bad decisions.
+Both `ui-bootstrap` and `AngularStrap` fixed this issue long ago by prefixing their directives, but in Angular 2 even when that is still recommended to prefix your directives, the end users won't have to deal with your bad decisions.
 
 If you're not convinced enough at this point, you can import `CORE_DIRECTIVES` from `angular2/angular2` and use that to import all core directives in your component.
 
@@ -326,7 +326,7 @@ class MyComponent {
 
 Here we are using the built-in `setTimeout` to change our message. Does it Work?
 
-<iframe src="http://embed.plnkr.co/AI2HiH11KS3q4Pwlhc2A/preview" style="width:100%; height:320px" frameborder="0"></iframe>
+<iframe src="http://embed.plnkr.co/1MBNeunVIknnVCRBOuI5/preview" style="width:100%; height:320px" frameborder="0"></iframe>
 
 Of course it does. No more fear when mixing Angular with "non angular" stuff.
 
@@ -382,7 +382,7 @@ No more interpolation because we are now writing to the property directly. Remem
 ```javascript
 @Directive({
   selector: '[tooltip]',
-  properties: [
+  inputs: [
     'text: tooltip'
   ],
   host: {
@@ -398,7 +398,7 @@ class Tooltip {
 }
 ```
 
-It has a list of properties! That means that we can pass a dynamic text to it like:
+It has a list of properties (now called `inputs` since alpha .38)! That means that we can pass a dynamic text to it like:
 
 ```html
 <div [tooltip]="foo">...</div>
@@ -406,7 +406,7 @@ It has a list of properties! That means that we can pass a dynamic text to it li
 
 That won't pass `foo` as the text, it will pass the content of `this.foo` as the text. And the best part, we didn't need to modify our directive.
 
-<iframe src="http://embed.plnkr.co/DhG913Aenx7Y8SNCKUq3/preview" style="width:100%; height:320px" frameborder="0"></iframe>
+<iframe src="http://embed.plnkr.co/2bVH2XhgDGSTJK6Q3V3a/preview" style="width:100%; height:320px" frameborder="0"></iframe>
 
 Now, we won't be confused anymore of when to use interpolation or not.
 
@@ -440,7 +440,7 @@ Also, thanks to this, we can get rid of unneeded directives like `ng-click`, `ng
 
 That will use the `click` event of the DOM, no more wrappers around that. As an extra, if that `doSomething` doesn't exist, angular will throw an error.
 
-<iframe src="http://embed.plnkr.co/MCW90ltXoccRvWtWbQDT/preview" style="width:100%; height:320px" frameborder="0"></iframe>
+<iframe src="http://embed.plnkr.co/QrnS7Lyk0TBo2cKkdW9b/preview" style="width:100%; height:320px" frameborder="0"></iframe>
 
 For this one you will need to check the console to see that the second `<p>` will trigger an error.
 
@@ -485,15 +485,17 @@ Now upon click, we call the `focus()` method on the node so it will grab the foc
 
 Isn't this wonderful? We are avoiding the need of creating extra directives for something as simple as this.
 
-<iframe src="http://embed.plnkr.co/bkJNJy0Ts4qnC590wNu3/preview" style="width:100%; height:320px" frameborder="0"></iframe>
+<iframe src="http://embed.plnkr.co/U09YrSx4cMh1n0k8CY40/preview" style="width:100%; height:320px" frameborder="0"></iframe>
 
 Wait a second, that example is nice, that for sure, but what is that `[(ng-model)]` syntax? Let see it step by step:
 
 ```html
-<input type="text" [ng-model]="name" (ng-model)="name=$event"></input>
+<input type="text" [ng-model]="name" (ng-model-change)="name=$event">
 ```
 
-Here we are using the new `ng-model`. If we remember from an early point, with `[foo]` we set some property in our directive, and with (foo) we can fire some event (for example, send a value to the parent). With this example, we are setting `name` to be the value of the `ng-model` using `[ng-model]="name"`. Then we are creating an event to update the name in the parent with `(ng-model)="name=$event"`. That is good but verbose. Angular 2 let us mix them both like `[(ng-model)]="name"` so we are actually doing **two-way databinding!**
+Here we are using the new `ng-model`. If we remember from an early point, with `[foo]` we set some property in our directive, and with (foo) we can fire some event (for example, send a value to the parent). With this example, we are setting `name` to be the value of the `ng-model` using `[ng-model]="name"`. Then we are creating an event to update the name in the parent with `(ng-model-change)="name=$event"`. That is good but verbose. Angular 2 let us mix them both like `[(ng-model)]="name"` so we are actually doing **two-way databinding!**.
+
+**Note:** The extra `-change` in the event is a new convention from alpha.41.
 
 ## Services
 
@@ -534,7 +536,7 @@ Then, we tell our component that we want to inject that:
 ```javascript
 @Component({
   selector: 'my-component',
-  viewBindings: [GithubNames]
+  viewProviders: [GithubNames]
 })
 ```
 
@@ -580,7 +582,7 @@ The `*` for `ng-for` is another syntactic sugar. No need to dig in that for this
 
 And please, don't forget to import `NgFor` (or directly CORE_DIRECTIVES) into our file and fill the `directives` array with it, because without it, it won't work ;)
 
-<iframe src="http://embed.plnkr.co/4MbMaKO57mNytDjJ5neV/preview" style="width:100%; height:320px" frameborder="0"></iframe>
+<iframe src="http://embed.plnkr.co/YgaUYO2lo1pHCnPgk956/preview" style="width:100%; height:320px" frameborder="0"></iframe>
 
 ## Overpowered outlets
 
@@ -623,6 +625,8 @@ So in this case, we created a new directive that will extend the `RouterOutlet` 
 Thanks to that, we have a much prettier way to manage authenticated users other than listening to route changes events.
 
 I grabbed this example from [Auth0](https://auth0.com/blog/2015/05/14/creating-your-first-real-world-angular-2-app-from-authentication-to-calling-an-api-and-everything-in-between/)
+
+**Note:** I am not entirely sure if this example works with the latest angular 2 version.
 
 ## Conclusions
 
