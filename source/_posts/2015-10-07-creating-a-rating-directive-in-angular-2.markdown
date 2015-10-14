@@ -6,7 +6,7 @@ comments: true
 categories: [angular2, directives]
 ---
 
-**Disclaimer: I am not an Angular 2 expert at this point, so I could be wrong with a few things, please comment if I made a mistake.**
+**Article updated on Oct 14th for Angular 2 alpha 42.**
 
 I want to tackle some points on this article and a simple rating directives will do the work. Let's build the simplest rating directive ever!
 
@@ -283,11 +283,13 @@ Let's add some outputs:
 @Component({
   selector: 'rating',
   inputs: ['rate'],
-  outputs: ['updateRate: rate']
+  outputs: ['updateRate: rateChange']
 })
 ```
 
-Again, a well named property. Here we are saying that we will have an output called `rate` (exact same name that our input) but we want to call it `updateRate` locally.
+Again, a well named property. Here we are saying that we will have an output called `rateChange` but we want to call it `updateRate` locally.
+
+**Note:** Prior to Angular2 .41. You would name your output with the same name as the input, but now you have to suffix it with `Change`.
 
 Outputs in Angular 2 are events, so now we are going to initialize it as a proper event:
 
@@ -311,10 +313,10 @@ update(value) {
 The Angular 2 `EventEmitter` is using `Rx`, so this is a proper `Observable`. Here we just `push` a new value every time we click on a star. How to use it on `my-app` component?:
 
 ```html main.html
-<rating [rate]="rate" (rate)="onUpdate($event)"></rating>
+<rating [rate]="rate" (rate-change)="onUpdate($event)"></rating>
 ```
 
-So now we specify an input (our `rate` property) and an output (the `rate` event calling a method). So we just need to define that method on our `my-app` component:
+So now we specify an input (our `rate` property) and an output (the `rate-change` event calling a method). So we just need to define that method on our `my-app` component:
 
 ```javascript main.ts
 export class MyApp {
@@ -339,7 +341,7 @@ onUpdate(value) {
 You want to pass an static number as an input but still be able to manage the output? Sure you can:
 
 ```html main.html
-<rating rate="2" (rate)="onUpdate($event)"></rating>
+<rating rate="2" (rate-change)="onUpdate($event)"></rating>
 ```
 
 We get all the different behaviors without any extra code.
@@ -347,7 +349,7 @@ We get all the different behaviors without any extra code.
 Let's think about:
 
 ```html main.html
-<rating [rate]="rate" (rate)="onUpdate($event)"></rating>
+<rating [rate]="rate" (rate-change)="onUpdate($event)"></rating>
 ```
 
 Isn't it a bit verbose? If I want to "emulate" the old behavior of having some kind of "two-way databinding", I need to write more html and also a event handler. Luckily, the Angular team created some syntactic sugar for that. You can do:

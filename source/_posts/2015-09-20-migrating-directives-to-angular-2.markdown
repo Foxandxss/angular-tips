@@ -5,7 +5,7 @@ date: 2015-09-20 17:53
 comments: true
 categories: [angular2, directives]
 ---
-** Article updated on Oct 14th for Angular 2 alpha 42.**
+**Article updated on Oct 14th for Angular 2 alpha 42.**
 
 `Angular 2` it is just around the corner and people are still afraid because `Angular 2` changes too much and it will hard to migrate. That is not true at all, in fact you will see how easy is `Angular 2` by highlighting the semantic shift between those two.
 
