@@ -3,7 +3,7 @@ layout: post
 title: "Setting up individual views with ui-router and ui-router-extras"
 date: 2015-11-08 12:41
 comments: true
-categories:
+categories: [Guest, ui-router]
 ---
 
 I had a problem: My application had multiple independent parts, which needed their own states. For example, I have a toolbar that's on top and a sidebar on the right. The user can change each of the parts without affecting the other, and setting it up as a normal ui-router state tree will not work.
