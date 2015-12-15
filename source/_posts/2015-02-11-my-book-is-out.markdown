@@ -3,7 +3,7 @@ layout: post
 title: "My book is out!"
 date: 2015-02-11 23:32
 comments: true
-categories: [book]
+categories: [Book]
 ---
 
 {% img https://s3.amazonaws.com/titlepages.leanpub.com/angularjsdirectives/large?1410030280 %}

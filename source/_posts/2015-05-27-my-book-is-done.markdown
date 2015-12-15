@@ -3,7 +3,7 @@ layout: post
 title: "My book is done!"
 date: 2015-05-27 23:39
 comments: true
-categories: [book]
+categories: [Book]
 ---
 
 {% img https://s3.amazonaws.com/titlepages.leanpub.com/angularjsdirectives/large?1410030280 %}
