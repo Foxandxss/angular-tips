@@ -6,7 +6,7 @@ comments: true
 categories: [angular2]
 ---
 
-**This article has been update in January 26th. Now it is using TypeScript and angular 2.0.0-beta.1**
+**This article has been update in January 30th. Now it is using TypeScript and angular 2.0.0-beta.2**
 
 **Note**: If the "foo" alerts from the plunkers starts popping out without reason, please leave a comment and I will look for a different solution.
 
