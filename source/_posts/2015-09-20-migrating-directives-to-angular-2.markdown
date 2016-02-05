@@ -782,7 +782,7 @@ And its html:
 </p>
 
 <accordion>
-  <accordion-group heading="This is the header" is-open="true">
+  <accordion-group heading="This is the header" isOpen="true">
     This is the content
   </accordion-group>
   <accordion-group [heading]="group.heading" *ngFor="#group of groups">
