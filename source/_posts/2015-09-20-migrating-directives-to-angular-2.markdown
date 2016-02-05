@@ -5,7 +5,7 @@ date: 2015-09-20 17:53
 comments: true
 categories: [angular2, directives]
 ---
-**Article updated on Oct 14th for Angular 2 alpha 42.**
+**Article updated on Feb 5th for Angular 2 beta 3.**
 
 `Angular 2` it is just around the corner and people are still afraid because `Angular 2` changes too much and it will hard to migrate. That is not true at all, in fact you will see how easy is `Angular 2` by highlighting the semantic shift between those two.
 
@@ -13,7 +13,7 @@ Let's migrate a directive from Angular 1 to Angular 2. I love accordions, everyb
 
 Use this [plunker](http://plnkr.co/edit/cAVyTIWCdbVOZR7WdELl?p=catalogue) to code the `Angular 1` version.
 
-Use this [plunker](http://plnkr.co/edit/yEEt0pXjAtMivUa0keYe?p=catalogue) to code the `Angular 2` version.
+Use this [plunker](http://plnkr.co/edit/JJmucPoGGeAz1UoH4ABO?p=catalogue) to code the `Angular 2` version.
 <!--more-->
 ## Designing our accordion
 
@@ -87,13 +87,13 @@ If we execute it now, we just get an empty `<div>`.
 
 We are used to code directives for everything. In Angular a directive is something we add to our HTML, it doesn't matter if it is an element that generates some content (like an accordion or an alert box) or if it is an attribute to add / modify some behavior (like a validation directive, ng-model, etc).
 
-In `Angular 2` we have several types of directives, the most common one is the `Component` directive which is type of directive that has a view. Here we don't have a `.directive` function like in `Angular 1`, instead we have simple classes that gets annotated to give them a certain behavior. Let's import the annotations we need for a `Component`:
+In `Angular 2` we have several types of directives, the most common one is the `Component` directive which is type of directive that has a template. Here we don't have a `.directive` function like in `Angular 1`, instead we have simple classes that gets annotated to give them a certain behavior. Let's import the annotations we need for a `Component`:
 
 ```javascript accordion.ts
-import {Component, View} from 'angular2/angular2';
+import {Component} from 'angular2/core';
 ```
 
-For a `Component`, we need both the `Component` and `View` annotations. First, we will create our Component class:
+For a `Component`, we just need the `Component` annotation. Then we create our Component class:
 
 ```javascript accordion.ts
 export class Accordion {}
@@ -117,32 +117,28 @@ Now our `Accordion` class is a `Component`. We need to customize the annotation 
 
 This serves the same purpose as the `restrict` option in `Angular 1`, but here we have more flexibility. We can not only restrict it by element or attributes like we used to, but also restrict it to certain types of elements or give a different name depending in where we use it. There are more options apart from those 4, but that is outside the scope of the article.
 
-Ok, so we want to restrict it to elements and attributes and both with the same name:
+Ok, so we want to restrict it to elements:
 
 ```javascript accordion.ts
 @Component({
-  selector: 'accordion, [accordion]'
+  selector: 'accordion'
 })
 export class Accordion {}
 ```
 
-To define the view of our component, we will use the `View` annotation:
+And now we define its component:
 
 ```javascript accordion.ts
-import {Component, View} from 'angular2/angular2';
+import {Component} from 'angular2/core';
 
 @Component({
-  selector: 'accordion, [accordion]'
-})
-@View({
+  selector: 'accordion',
   templateUrl: 'src/accordion.html'
 })
 export class Accordion {}
 ```
 
 We can both have our template inline (with `template`) or in a external file (with `templateUrl`).
-
-A component needs to have one `Component` annotation and one or *more* `View` annotations. Wait, one or more? Yes, you can have a `View` for desktop, a `View` for mobiles, etc.
 
 All we need now is to code write our template to be able to transclude our stuff. Wait, transclude?
 
@@ -164,7 +160,7 @@ Now if we do something like:
 
 The `<content>` element in the template will be replaced with `Foo`. The directives in Angular 2 are not Web Components, they just work like Web Components. So for our `Components` we have a our own version of `<content>` called `<ng-content>`.
 
-The good thing about `<content>`/`<ng-content>` is that in contrast to `ng-transclude`, you can have several of them in one template. For example:
+The good thing about `<content>`/`<ng-content>` is that in contrast to `ng-transclude` (this has been fixed in angular recently), you can have several of them in one template. For example:
 
 ```html
 <ng-content select=".foo"></ng-content>
@@ -202,6 +198,7 @@ Would be nice if we could apply that class directly to the host element (the `ac
 ```javascript accordion.ts
 @Component({
   selector: 'accordion',
+  templateUrl: 'src/accordion.html',
   host: {
     'class': 'panel-group'
   }
@@ -238,10 +235,11 @@ It won't work yet because our application is not aware of the accordion directiv
 import {Accordion} from './accordion';
 ```
 
-That alone won't do the job, because now in Angular 2, we need to specify which directives are we using in our component. We can do that thanks to the `directives` property of the `View` annotation:
+That alone won't do the job, because now in Angular 2, we need to specify which directives are we using in our component. We can do that thanks to the `directives` property of the `Component` annotation:
 
 ```javascript app.ts
-@View({
+@Component({
+  selector: 'my-app',
   templateUrl: 'src/app.html',
   directives: [Accordion]
 })
@@ -321,15 +319,19 @@ And now I see it working. Not really clear.
 We won't have much problem migrating this to Angular 2. Let's see it:
 
 ```javascript accordion.ts
+import {Component, Input} from 'angular2/core';
+
+...
+
 @Component({
-  selector: 'accordion-group, [accordion-group]',
-  inputs: ['heading']
-})
-@View({
-  templateUrl: 'src/accordion-group.html',
-  directives: [NgClass]
+  selector: 'accordion-group',
+  templateUrl: 'src/accordion-group.html'
 })
 export class AccordionGroup {
+  isOpen = false;
+
+  @Input() heading: string;
+
   toggleOpen(event) {
     event.preventDefault();
     this.isOpen = !this.isOpen;
@@ -337,22 +339,14 @@ export class AccordionGroup {
 }
 ```
 
-We have our `Component` annotation but this time it also has a `inputs` property. There we can specify that we can use a *heading* attribute in our component and that will be mapped to a `heading` variable in our Component. We can see this `inputs` as a way to introduce (input) stuff into our directives. There is also a `ouputs` property, but since this directive doesn't output anything, we won't see it.
-
-In our `View` annotation, we specify the template to use, and since that template will use the `ng-class` directive, we need to add it to the array.
+In this case, to pass the `heading` input we had in the Angular 1 version, we have a new annotation called `Input`. Thanks to it, we can annotate instance variables to contain the value of those attributes.
 
 Back in the Angular 1 version, we had to create a `link` function to add the `toggleOpen` function. In Angular 2 we just need to create a method in our class.
-
-Before we forget, we need to import the `NgClass` directive:
-
-```javascript accordion.ts
-import {Component, View, NgClass} from 'angular2/angular2';
-```
 
 The template is pretty much the same:
 {% raw %}
 ```html accordion-group.html
-<div class="panel panel-default" [ng-class]="{'panel-open': isOpen}">
+<div class="panel panel-default" [ngClass]="{'panel-open': isOpen}">
   <div class="panel-heading" (click)="toggleOpen($event)">
     <h4 class="panel-title">
       <a href tabindex="0"><span>{{heading}}</span></a>
@@ -366,7 +360,7 @@ The template is pretty much the same:
 </div>
 ```
 {% endraw %}
-Here we have that `ng-class` that we declared on our `View` (more on the syntax in a bit), a `click` event for the toggle, a `hidden` property (which substitutes the `ng-show` we had) and again, an `<ng-content>` to project our group's content.
+Here we have a `ngClass` (more on the syntax in a bit), a `click` event for the toggle, a `hidden` property (which substitutes the `ng-show` we had) and again, an `<ng-content>` to project our group's content.
 
 We can now use it in our app. First, we need to import the new component:
 
@@ -404,7 +398,7 @@ But now, we don't need to ask ourselves what does that `heading` receive. If we 
 <accordion-group [heading]="foo"></accordion-group>
 ```
 
-We get both behavior now without any extra code. That means, no more asking ourselves how to use the directive anymore! To learn more about the `[]` syntax used here and before with `ng-class` and `hidden`, please read the "Properties" section in my [previous article](/blog/2015/06/why-will-angular-2-rock/).
+We get both behavior now without any extra code. That means, no more asking ourselves how to use the directive anymore! To learn more about the `[]` syntax used here and before with `ngClass` and `hidden`, please read the "Properties" section in my [previous article](/blog/2015/06/why-will-angular-2-rock/).
 
 ## Opening groups dynamically in Angular 1
 
@@ -446,20 +440,27 @@ The issue with this again is the syntax is that we need to decide beforehand how
 
 ## Opening groups dynamically in Angular 2
 
-In Angular 2, we don't need to make any question. You want a `isOpen` attribute? Put it on the `Component`:
+In Angular 2, we don't need to make any question. You want a `isOpen` attribute? Decorate our `isOpen` with `Input`:
 
 ```javascript accordion.ts
-@Component({
-  selector: 'accordion-group, [accordion-group]',
-  inputs: ['heading', 'isOpen']
-})
+export class AccordionGroup {
+  @Input() isOpen = false;
+  @Input() heading: string;
+
+  toggleOpen(event) {
+    event.preventDefault();
+    this.isOpen = !this.isOpen;
+  }
+}
 ```
+
+Now the value of `isOpen` can be set with an attribute but will be initialized to false by default.
 
 Now we can do:
 
 ```html app.html
 <accordion>
-  <accordion-group heading="First one" is-open="true">
+  <accordion-group heading="First one" isOpen="true">
     Lot of content in here.
   </accordion-group>
   <accordion-group heading="Another group">
@@ -471,20 +472,20 @@ Now we can do:
 You say you would like to send a property from your component? Sure:
 
 ```html
-<accordion-group heading="First one" [is-open]="isOpen"></accordion-group>
+<accordion-group heading="First one" [isOpen]="isOpen"></accordion-group>
 ```
 
 Now it will look for a `isOpen` attribute on the `MyApp` component:
 
 ```javascript app.ts
 export class MyApp {
-  isOpen:string = true;
+  isOpen = true;
 }
 ```
 
 Much easier, isn't it?
 
-Worth mentioning that even when this `inputs` array seems to be analogous on how we do two way binding in angular, changing `isScope` by toggling, won't change the parent's model, in other words, MyApp's `isOpen` won't change. Now with Angular-2.0.0-alpha.38 this is a bit clearer. In the past, the `inputs` array was named `properties` so it could confuse the users whether that gives you two-way databinding or not. Now we can see that it only serves as `input`.
+Worth mentioning that even when this `Input` annotation seems to be analogous on how we do two way binding in angular, changing `isScope` by toggling, won't change the parent's model, in other words, MyApp's `isOpen` won't change.
 
 ## Closing other groups in Angular 1
 
@@ -562,9 +563,9 @@ In Angular this is done a bit simpler. We need to be able to register groups as 
 
 ```javascript accordion.ts
 export class Accordion {
-  private groups:Array<AccordionGroup> = [];
+  groups: Array<AccordionGroup> = [];
 
-  addGroup(group:AccordionGroup) {
+  addGroup(group: AccordionGroup): void {
     this.groups.push(group);
   }
 }
@@ -576,8 +577,9 @@ Then we need to register our groups in it. How? We used to `require` the accordi
 
 ```javascript accordion.ts
 export class AccordionGroup {
+  ...
 
-  constructor(private accordion:Accordion): void {
+  constructor(private accordion: Accordion) {
     this.accordion.addGroup(this);
   }
 
@@ -593,8 +595,8 @@ For the close others, another method on the `Accordion` class:
 export class Accordion {
   ...
 
-  closeOthers(openGroup:AccordionGroup): void {
-    this.groups.forEach((group:AccordionGroup) => {
+  closeOthers(openGroup: AccordionGroup): void {
+    this.groups.forEach((group: AccordionGroup) => {
       if (group !== openGroup) {
         group.isOpen = false;
       }
@@ -607,24 +609,34 @@ This time we don't have `$watch` anymore, so what we need to do is to rely on st
 
 ```javascript accordion.ts
 export class AccordionGroup {
-  private _isOpen:boolean = false;
+  private _isOpen: = false;
 
-  ...
+  @Input() heading: string;
 
-  public get isOpen(): boolean {
-    return this._isOpen;
-  }
-
-  public set isOpen(value:boolean): void {
+  @Input()
+  set isOpen(value: boolean) {
     this._isOpen = value;
     if (value) {
       this.accordion.closeOthers(this);
     }
   }
+
+  get isOpen() {
+    return this._isOpen;
+  }
+
+  constructor(private accordion: Accordion) {
+    this.accordion.addGroup(this);
+  }
+
+  toggleOpen(event: MouseEvent): void {
+    event.preventDefault();
+    this.isOpen = !this.isOpen;
+  }
 }
 ```
 
-Here, we initialize a private `isOpen` variable to false, and every time we set `isOpen` (in any way), the setter will be called and it will call `closeOthers`.
+So here we changed our `isOpen` input to be a setter. That way we can run some code every time our input changes (like a `$watch`). So when we toggle `isOpen` it will call `closeOthers`. As a good convention, every time you add a setter, add a getter as well (unless the value is meant to be readonly). Also since the setter / getter is the public interface, we can mark `_isOpen` as private.
 
 Works like a charm. The good part in here is that we don't have anymore those `link` vs `controller` wars. When to use `link`, when to use `controller`. We just have our class and nothing else.
 
@@ -702,7 +714,7 @@ First, let's code the `removeGroup` method on the `Accordion` class:
 export class Accordion {
   ...
 
-  removeGroup(group:AccordionGroup): void {
+  removeGroup(group: AccordionGroup): void {
     const index = this.groups.indexOf(group);
     if (index !== -1) {
       this.groups.splice(index, 1);
@@ -711,10 +723,16 @@ export class Accordion {
 }
 ```
 
-Now we need to call that `OnDestroy`. To do that, we simply need to implement create a `onDestroy` method:
+Now we need to call that `OnDestroy`. To do that, first we import the `OnDestroy` interface:
 
 ```javascript accordion.ts
-onDestroy(): void {
+import {Component, Input, OnDestroy} from 'angular2/core';
+```
+
+And then we implement the `ngOnDestroy` method:
+
+```javascript accordion.ts
+ngOnDestroy() {
   this.accordion.removeGroup(this);
 }
 ```
@@ -722,21 +740,20 @@ onDestroy(): void {
 To see this in action, let's modify our `MyApp` component to have a list of dynamic groups:
 
 ```javascript app.ts
-import {Component, View, bootstrap, NgFor} from 'angular2/angular2';
+import {Component} from 'angular2/core';
+import {bootstrap} from 'angular2/platform/browser';
 
 import {Accordion, AccordionGroup} from './accordion';
 
 @Component({
-  selector: 'my-app'
-})
-@View({
-  templateUrl: 'src/app.html'
-  directives: [Accordion, AccordionGroup, NgFor]
+  selector: 'my-app',
+  templateUrl: 'src/app.html',
+  directives: [Accordion, AccordionGroup]
 })
 export class MyApp {
-  isOpen:boolean = false;
+  isOpen = false;
 
-  groups:Array<any> = [
+  groups: Array<any> = [
     {
       heading: 'Dynamic 1',
       content: 'I am dynamic!'
@@ -768,16 +785,16 @@ And its html:
   <accordion-group heading="This is the header" is-open="true">
     This is the content
   </accordion-group>
-  <accordion-group [heading]="group.heading" *ng-for="#group of groups">
+  <accordion-group [heading]="group.heading" *ngFor="#group of groups">
     {{group.content}}
   </accordion-group>
-  <accordion-group heading="Another group" [is-open]="isOpen">
+  <accordion-group heading="Another group" [isOpen]="isOpen">
     More content
   </accordion-group>
 </accordion>
 ```
 {% endraw %}
-Notice that nice `ng-for` in there to generate multiple groups. The syntax is a bit different from what we used in here, but that is a topic for another article ;)
+Notice that nice `ngFor` in there to generate multiple groups. The syntax is a bit different from what we used in here, but that is a topic for another article ;)
 
 ## Conclusions
 
@@ -798,8 +815,6 @@ On the other hand, TypeScript, even when it adds a bit of verbosity to our code,
 
 Check the end result of the [ng1 version](http://plnkr.co/edit/tYPUDDJwFMsjWjyDznwt).
 
-Check the end result of the [ng2 version](http://plnkr.co/edit/PvKuiBon0PpM6sNSehc6).
+Check the end result of the [ng2 version](http://plnkr.co/edit/Fs4oR956gd6gQmHdFhHS).
 
-I also wrote an ng2 version with [ES5](http://plnkr.co/edit/nxy7dzUgUK7lktUyhErh?p=preview). You can see what a nice job the team did to make the syntax as close as possible to what we can achieve with ES6 or TypeScript.
-
-I have also a much more complete version of the ng2 one, but the article was getting too long to cover them all. Still, be sure to check [it](http://plnkr.co/edit/XuH7mXBycODO7KYgNSbH) time to time while I update it with new features.
+I also wrote an ng2 version with [ES5](http://plnkr.co/edit/nxy7dzUgUK7lktUyhErh?p=preview) (using angular 2 alpha). You can see what a nice job the team did to make the syntax as close as possible to what we can achieve with ES6 or TypeScript.
