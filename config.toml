@@ -1,0 +1,34 @@
+baseurl = "https://example.com/"
+languageCode = "en-US"
+title = "Angular Tips"
+# Enable comments by entering your Disqus shortname
+disqusShortname = "angulartips"
+# Enable Google Analytics by entering your tracking code
+googleAnalytics = ""
+theme = "hugo-sustain"
+
+[permalinks]
+  blog = "/blog/:year/:month/:filename"
+
+[params]
+  avatar = "profile.png"
+  author = "Jesus Rodriguez"
+  description = "Angular tips blog"
+
+  # Custom assets can be linked with their paths relative to static/
+  custom_css = []
+  custom_js  = []
+
+[social]
+  Github        = "Foxandxss"
+  Email         = "Foxandxss@gmail.com"
+  Twitter       = "Foxandxss"
+  LinkedIn      = "jesús-rodríguez-rodríguez-4a6a9020"
+  Stackoverflow = "users/123204/jesus-rodriguez"
+
+## Main Menu
+[[menu.main]]
+  name = "blog"
+  weight = 100
+  identifier = "blog"
+  url = "/blog/"

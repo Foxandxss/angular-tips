@@ -1,0 +1,15 @@
++++
+
+date = "2013-08-01T18:21:40+01:00"
+title = "Welcome"
+tags = ["blog"]
+
++++
+
+Hello, I am Jesus Rodriguez and, like many of you, I am an Angular.js learner.
+
+I want to share with you all the tips and tricks I am learning on my way to Angular.js mastery.
+
+Keep in mind that I am not an Angular.js expert and English is not my first language so bear with me if you find errors. In fact, you can reach this blog on [github](https://github.com/Foxandxss/angular-tips) and you can make your own pull request to fix the problems you find.
+
+Thanks!
