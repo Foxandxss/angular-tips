@@ -1,6 +1,6 @@
 +++
 description = ""
-date = "2013-02-03T16:48:57+01:00"
+date = "2014-02-03T16:48:57+01:00"
 title = "Tip: computed properties with Javascript properties"
 categories = []
 tags = ["tip"]

@@ -5,6 +5,8 @@ tags = ["beginners"]
 
 +++
 
+**NOTE: This blog was migrated from another platform. The inline examples here used to work so this article is pretty much useless right now. I will find an alternative.**
+
 Let's see if we can discover why :)
 
 Angular.js is a MV* (Model - View - Whatever) Javascript framework which is maintained by Google which excels in the creation of `single-page-applications` or even for adding some "magic" to our classic web applications.
