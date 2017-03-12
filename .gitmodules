@@ -1,6 +1,0 @@
-[submodule ".themes/octoflat"]
-	path = .themes/octoflat
-	url = https://github.com/alexgaribay/octoflat
-[submodule ".themes/constant-cockles"]
-	path = .themes/constant-cockles
-	url = git://github.com/octopress-themes/constant-cockles.git
