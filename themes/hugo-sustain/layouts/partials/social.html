@@ -1,0 +1,23 @@
+<div class="social">
+	<h4>
+    {{ if .Site.Social.github }}
+	  <a href="http://github.com/{{ .Site.Social.github }}"><i class="fa fa-github"></i></a>
+    {{ end }}
+
+    {{ if .Site.Social.email }}
+	  <a href="mailto:{{ .Site.Social.email }}"><i class="fa fa-envelope"></i></a>
+    {{ end }}
+
+    {{ if .Site.Social.twitter }}
+	  <a href="http://twitter.com/{{ .Site.Social.twitter }}"><i class="fa fa-twitter"></i></a>
+    {{ end }}
+
+    {{ if .Site.Social.linkedin }}
+	  <a href="http://linkedin.com/in/{{ .Site.Social.linkedin }}"><i class="fa fa-linkedin"></i></a>
+    {{ end }}
+
+    {{ if .Site.Social.stackoverflow }}
+	  <a href="http://stackoverflow.com/{{ .Site.Social.stackoverflow }}"><i class="fa fa-stack-overflow"></i></a>
+    {{ end }}
+	</h4>
+</div>
