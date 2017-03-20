@@ -487,3 +487,5 @@ Angular is great today and steadily evolving along a predictable path to a produ
 
 If you haven't tried Angular yet, start today. Most of you can update your v2 applications to v4 in an afternoon.
 You'll be glad you did.
+
+This article has been written by [Jesús Rodríguez](https://github.com/Foxandxss) and [Ward Bell](https://github.com/wardbell).
