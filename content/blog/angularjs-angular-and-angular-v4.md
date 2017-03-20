@@ -339,7 +339,7 @@ Consider this history of recent cool library releases
 
 Then `npm install` delivers `cool-library v.1.3.5` with the first specification, `v.1.3.7` with the second specification, and `v.1.4.3` with the third.
 
-It won't install either of the `2.x` versions until you manually update the version number in `package.json` so there should be no risk of accidentally installing a `cool-library` release that breaks your app &mdash if the library author followed the rules. 
+It won't install either of the `2.x` versions until you manually update the version number in `package.json` so there should be no risk of accidentally installing a `cool-library` release that breaks your app &mdash; if the library author followed the rules. 
 
 Remember that `AngularJS` doesn't follow SemVer so `npm` can't protect us. That is why I stumbled into an error when I installed dependencies for my `ui-bootstrap` library. The `package.json` allowed `npm` to install the latest version of `AngularJS` (greater than `1.4.0`):
 
