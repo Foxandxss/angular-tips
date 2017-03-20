@@ -4,7 +4,7 @@ title = "Angular Tips"
 # Enable comments by entering your Disqus shortname
 disqusShortname = "angulartips"
 # Enable Google Analytics by entering your tracking code
-googleAnalytics = ""
+googleAnalytics = "UA-6181182-3"
 theme = "hugo-sustain"
 
 [permalinks]
