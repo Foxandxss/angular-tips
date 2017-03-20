@@ -148,7 +148,7 @@ You should be able to upgrade to the `1.23.15` datepicker a year from now withou
 Sometimes to fix a bug or add an important feature, we have to make a breaking change. 
 A **breaking change** means that upgrading to the new version of the library _might_ cause your application to behave in an unexpected way that contradicts previously documented behavior or fail outright.
 
-to make the library better &mdash; whether  &mdash, we need to do breaking changes. So... what is exactly a **Breaking Change**?
+So... what is exactly a **Breaking Change**?
 
 Let's return to our datepicker example.
 Imagine that the `1.1.0` API allows you to configure the theme with a binding that maps to an `@Input` property like this:
