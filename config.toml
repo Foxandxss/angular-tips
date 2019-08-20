@@ -1,4 +1,4 @@
-baseurl = "http://beta.angular-tips.com/"
+baseurl = "http://angular-tips.com/"
 languageCode = "en-US"
 title = "Angular Tips"
 # Enable comments by entering your Disqus shortname

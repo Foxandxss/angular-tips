@@ -1,13 +1,12 @@
-/* Main page with stikky-footer
--------------------------------------------------- */
-html,
-body {
+/* Main page with stikky-footer */
+html, body {
   height: 100%;
   background-color: #fff;
   font-family: 'Source Sans Pro', sans-serif;
   /* The html and body elements cannot have any padding or margin. */
   border-top: 3px solid #27A822;
 }
+
 /* Wrapper for page content to push down footer */
 #wrap {
   padding-bottom: 50px;	
@@ -19,9 +18,7 @@ body {
   /*padding: 0 0 60px;*/
 }
 
-/* Navbar
--------------------------------------------------- */
-
+/* Navbar */
 .navbar-static-top {
   margin-bottom: 10px;
 }
@@ -84,9 +81,7 @@ body {
   }
 }
 
-/* Custom page CSS
--------------------------------------------------- */
-
+/* Custom page CSS */
 .container {
   width: auto;
   max-width: 800px;
@@ -101,10 +96,11 @@ body {
 .container a:hover {
   color: #267723;
 }
-.img-responsive {
- display: block;
- height: auto;
- max-width: 100%;
+.container p img, .img-responsive {
+  display: block;
+  height: auto;
+  margin: 2rem auto;
+  max-width: 100%;
 }
 .panel-default h4 {
   text-align: left;
@@ -132,12 +128,30 @@ body {
   padding-top: -10px;
   text-align: left;
 }
-.social {
-  padding-top: 12px;
-  word-spacing: 25px;
+.social-links {
+  display: block;
+  margin: 0 auto;
+  margin-top: 40px;
+  padding: 0px;
+  width: 100%;
+  text-align: center;
+  animation: fade 1s ease 1s both;
 }
-.social h4 > a {
-  color: #000000;
+.social-links li {
+  display: inline-block;
+  padding: 5px;
+  padding-top: 0;
+  text-align: center;
+}
+.social-links li a {
+  font-size: 20px;
+  color: #000;
+  padding: 10px;
+  padding-bottom: 4px;
+  transition: all .4s ease;
+}
+.social-links li a:hover {
+  color: #000;
 }
 .avatar {
   padding-top: 5%;
@@ -148,6 +162,10 @@ body {
 .blog-title{
   padding-top: 2px;
 }
+.label {
+  display: inline-block;
+  margin-bottom: 5px;
+}
 .related-posts h4 {
   text-align: center;
 }
@@ -157,16 +175,13 @@ body {
 .disqus {
   padding-bottom: 15px;
 }
-
 .blogpost{
   text-align: left;
   line-height: 30px;
   font-size: 18px;
 }
 
-/* Footer 
--------------------------------------------------- */
-
+/* Footer  */
 .footer {
   text-decoration: none !important;
 }

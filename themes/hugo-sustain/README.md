@@ -2,7 +2,10 @@
 
 ## Table of Contents
 
+- [Table of Contents](#table-of-contents)
 - [Installation](#installation)
+    - [With `git`](#with-git)
+    - [Manual](#manual)
 - [Quick start](#quick-start)
 - [Features](#features)
   - [Syntax highlighting](#syntax-highlighting)
@@ -19,7 +22,7 @@
 
 ********************
 
-<p align="center"><b><a href="https://demo.nurlan.co/themes/hugo-sustain/">Sustain Live Demo</a></b></p>
+<p align="center"><b><a href="https://demo.nurlan.co/hugo-sustain/">Sustain Live Demo</a></b></p>
 
 ## Installation
 
@@ -46,13 +49,17 @@ After installation, take a look in the `exampleSite` folder at. This directory c
   exampleSite
   ├── config.toml
   ├── content
-  │   ├── projects
-  │   │   └── index.md
+  │   ├── projects.md
+  │   │
   │   └── blog
   │       ├── creating-a-new-theme.md
   │       ├── go-is-for-lovers.md
   │       ├── hugo-is-for-lovers.md
   │       └── migrate-from-jekyll.md
+  │
+  ├── data
+  │   └── projects.yml
+  │
   └── static
 ```
 
@@ -76,7 +83,7 @@ Use `highlight = true` in the front matter to include [`highlight.js`][highlight
 
 ### Disqus
 
-To use this feature, uncomment and fill out the `disqusShortname` parameter in config.toml`.
+To use this feature, uncomment and fill out the `disqusShortname` parameter in `config.toml`.
 
 ### Google Analytics
 
@@ -98,6 +105,11 @@ Pull requests, bug fixes, and new features are welcome!
 
 ## Changelog
 
+> Version 1.0.1
+
+- Added proper "Projects" page rendering
+- Fixes, many fixes
+
 > Version 1.0
 
 - Initial release
@@ -105,14 +117,14 @@ Pull requests, bug fixes, and new features are welcome!
 ## License
 
 <p align="center">
-  <a href="./LICENSE.md"><img src="https://i.nurlan.co/i/logo.svg" width="100%" height="128"></a>
+  <a href="./LICENSE.md"><img src="https://nurlan.co/cdn/logo.svg" width="100%" height="128"></a>
   <a href="./LICENSE.md"><strong>MIT</strong></a>
 </p>
 
 
 
-[logo]: https://i.nurlan.co/i/sustain.png
-[screenshot]: https://i.nurlan.co/i/sustain-screen.png
+[logo]: https://nurlan.co/cdn/sustain.png
+[screenshot]: https://nurlan.co/cdn/sustain-screen.png
 [bootstrap]: https://getbootstrap.com/
 [hugo]: https://gohugo.io/
 [gh-pages]: https://pages.github.com/

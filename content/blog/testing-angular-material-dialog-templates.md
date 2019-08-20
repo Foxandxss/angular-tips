@@ -77,7 +77,7 @@ Maybe with a fake `MAT_DIALOG_DATA` and then test what I need from its template.
 The first thing we have to notice here is that the `InformationDialogComponent` won't be used directly in a template, in other words, it is a `EntryComponent`. As far as I know, there is no `entryComponents` array with the `TestingModule` so we need to create a dummy NgModule:
 
 File: `information-dialog.component.spec.ts`
-```typescript:
+```typescript
 const TEST_DIRECTIVES = [
   InformationDialogComponent
 ];
@@ -98,7 +98,7 @@ Here we import the the needed modules and we register our dialog.
 Now, we can create our `TestingModule`:
 
 File: `information-dialog.component.spec.ts`
-```typescript:
+```typescript
 describe('InformationDialog', () => {
   let dialog: MatDialog;
 
@@ -136,7 +136,7 @@ Angular Material creates an overlay container to put the dialog in it. We can cr
 Let's update our `beforeEach` section again:
 
 File: `information-dialog.component.spec.ts`
-```typescript:
+```typescript
 let dialog: MatDialog;
 let overlayContainerElement: HTMLElement;
 
@@ -207,7 +207,7 @@ const TEST_DIRECTIVES = [
 Now, we need to create an instance of it:
 
 File: `information-dialog.component.spec.ts`
-```typescript:
+```typescript
 let dialog: MatDialog;
 let overlayContainerElement: HTMLElement;
 
@@ -227,7 +227,7 @@ beforeEach(() => {
 Finally, we can fix our test:
 
 File: `information-dialog.component.spec.ts`
-```typescript:
+```typescript
 it('shows information without details', () => {
   const config = {
     data: {
@@ -252,7 +252,7 @@ We just needed to trigger a change detection with our noop component.
 Let's throw another test:
 
 File: `information-dialog.component.spec.ts`
-```typescript:
+```typescript
 it('shows an error message with some details', () => {
   const config = {
     data: {
