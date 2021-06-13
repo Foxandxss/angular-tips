@@ -1,0 +1,13 @@
+.highlight > pre {
+  padding: 20px;
+}
+
+.highlight > div {
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 10px;
+}
+
+.bg-sustain-success {
+  background-color: #1689E0!important;
+}

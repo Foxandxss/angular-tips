@@ -11,20 +11,21 @@ theme = "hugo-sustain"
   blog = "/blog/:year/:month/:filename"
 
 [params]
-  avatar = "profile.png"
+  avatar = "avatar.png"
   author = "Jesus Rodriguez"
   description = "Angular tips blog"
 
   # Custom assets can be linked with their paths relative to static/
-  custom_css = []
+  custom_css = ["css/styles.css"]
   custom_js  = []
 
-[social]
+[params.social]
   Github        = "Foxandxss"
   Email         = "Foxandxss@gmail.com"
   Twitter       = "Foxandxss"
   LinkedIn      = "jesús-rodríguez-rodríguez-4a6a9020"
   Stackoverflow = "users/123204/jesus-rodriguez"
+  Telegram       = "Foxandxss"
 
 ## Main Menu
 [[menu.main]]
@@ -32,3 +33,7 @@ theme = "hugo-sustain"
   weight = 100
   identifier = "blog"
   url = "/blog/"
+
+[markup]
+  [markup.highlight]
+    style = "dracula"

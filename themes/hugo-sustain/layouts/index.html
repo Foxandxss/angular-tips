@@ -1,21 +1,13 @@
-{{ partial "head" . }}
-  <body>
-    <div id="wrap">
-      {{ partial "header" . }}
-      <section id="about">
-        <div class="container">
-        <div class="avatar">
-          <img class="img-circle" src="{{ .Site.BaseURL }}images/{{ .Site.Params.avatar }}" alt="Responsive image">
-        </div>
-        <h3>I'm <strong>{{ .Site.Params.author }}</strong>, a Sr. Developer and Sr. Technical Writer.</h3>
-        <h3>I love writing documentation and doing frontend development.</h3>
-        <h3>Have a look at some of my working <a href="http://github.com/{{ .Site.Social.github }}">projects</i></a>.</h3>
-        <h3>I am a former member of the Angular core documentation team.</h3>
-        <h3>Contact me at <a href="http://twitter.com/{{ .Site.Social.twitter }}">@{{ .Site.Social.twitter }}</a> or by <a href="mailto:{{ .Site.Social.email }}">email</a>.</h3>
-        {{ partial "social.html" . }}
-        </div>
-      </section>
+{{ define "main" }}
+  {{ partial "header" . }}
+
+  <section id="about">
+    <div class="container">
+      <div class="avatar mb-5">
+        <img class="rounded-circle" src="images/{{ .Site.Params.avatar }}" alt="Responsive image">
+      </div>
+      {{ .Content }}
+      {{ partial "social.html" . }}
     </div>
-    {{ partial "footer" . }}
-  </body>
-</html>
+  </section>
+{{ end }}
