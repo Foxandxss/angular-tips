@@ -7,6 +7,8 @@ title = "Introduction to unit test: TOC"
 
 +++
 
+**THIS TUTORIAL IS FOR ANGULAR.JS. FOR AN ANGULAR UNIT TESTING TUTORIAL GO [HERE](/blog/2021/07/unit-testing-toc)**
+
 Here is the `Table of contents` of the `Introduction to unit test` serie:
 
 * [Introduction](/blog/2014/02/introduction-to-unit-test-introduction)
