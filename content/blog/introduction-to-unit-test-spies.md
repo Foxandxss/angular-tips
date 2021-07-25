@@ -7,6 +7,8 @@ description = ""
 
 +++
 
+**THIS TUTORIAL IS FOR ANGULAR.JS. FOR AN ANGULAR UNIT TESTING TUTORIAL GO [HERE](/blog/2021/07/unit-testing-toc)**
+
 Before we deep more into `Angular` lands, I want to talk about spies. No, no that kind of spies.
 
 When you are doing unit testing, you don't want to leave your `SUT` (subject under test) domain. If you're testing a controller in Angular and it injects 3 services, you don't care about those services, you only want to test that controller but also make sure it uses the services as intended.

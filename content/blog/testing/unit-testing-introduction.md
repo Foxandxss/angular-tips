@@ -9,7 +9,7 @@ tags: ["unit test"]
 
 Let's talk about unit testing our applications.
 
-### What is unit testing and why should I care?
+## What is unit testing and why should I care?
 
 Unit tests are a bunch of Typescript files that we create to make sure that every part of our application works as it is expected to work. That means that we need to write hundred of lines of code to assert that our code does what is supposed to do.
 
@@ -23,7 +23,7 @@ Unit tests are a bunch of Typescript files that we create to make sure that ever
 
 * **Will it work**: That is the end goal and probably the biggest time waster of anything you have to do in your applicaton.  Something as simple as a *calendar*, involves some maths and some magic numbers to make it work. We really need to be sure it works. How? We open a certain date, we manually check with our OS calendar to see if it matches. We repeat that for some random dates (old ones, future ones). Then we change something in our service and well, we need to check the dates again to assert that nothing is broken. Repeat that 20 times for a normal service development.
 
-### How does the unit test help?
+## How does the unit test help?
 
 Ok, you convinced me that maybe I was wrong about not doing unit testing. But how can it help with those problems? What if we see a really simple example? (General example, not Angular related and it will be in a really slow peace to make the point).
 
@@ -66,7 +66,7 @@ In this example, we are *Arranging* by creating a `Calculator` object, then *Act
 
 Alright, but what is the result of this test?
 
-![](/images/posts/testing/introduction/1.png)
+![1 failing test](/images/posts/testing/introduction/1.png)
 
 Kind of expected, isn't it? We wrote our test before we even created our `Calculator` class.
 
@@ -86,7 +86,8 @@ export class Calculator {
 
 And also let's import it to our spec file:
 
-File: `src/Calculator.spec.ts`
+File: `src/Calculator.spec.ts`:
+
 ```typescript {hl_lines=[1]}
 import { Calculator } from './calculator';
 
@@ -97,7 +98,7 @@ describe('Calculator', () => {
 
 What does our test says now?
 
-![](/images/posts/testing/introduction/2.png)
+![1 passing test](/images/posts/testing/introduction/2.png)
 
 But... That is definitely not right, isn't it? We hardcoded the result *8* into the method. That way our tests surely pass.
 
@@ -119,7 +120,7 @@ it('should be able to sum a number with 0', () => {
 
 If we see the test tab we see:
 
-![](/images/posts/testing/introduction/3.png)
+![failing second test](/images/posts/testing/introduction/3.png)
 
 **1 test failed, 1 test passed**. And we can see where it failed and why. We expected the result of 7 but we got 8. That means that something is wrong with our code.
 
@@ -139,7 +140,7 @@ export class Calculator {
 
 Now our tests says:
 
-![](/images/posts/testing/introduction/4.png)
+![2 passing tests](/images/posts/testing/introduction/4.png)
 
 Before we move on, let's take a peek to our current spec file:
 
@@ -225,7 +226,7 @@ it('should be able to rum a negatrive number for a negative result', () => {
 
 Notice how I wrote two lines in one in the last example. It is still readable so it is good in my book.
 
-![](/images/posts/testing/introduction/5.png)
+![4 passing tests](/images/posts/testing/introduction/5.png)
 
 Seems like our code handles this two use cases correctly.
 
@@ -295,7 +296,7 @@ describe('#division', () => {
 
 It fails:
 
-![](/images/posts/testing/introduction/6.png)
+![division method failing](/images/posts/testing/introduction/6.png)
 
 What a surprise. Let's fix it real quick:
 
@@ -313,7 +314,7 @@ export class Calculator {
 }
 ```
 
-![](/images/posts/testing/introduction/7.png)
+![5 passing tests](/images/posts/testing/introduction/7.png)
 
 This time with the application requisites a bit clearer, we wrote a better `division` method.
 
@@ -326,7 +327,7 @@ it('returns a rounded result for a non exact division', () => {
   expect(calc.division(20, 3)).toBe(7)
 });
 ```
-![](/images/posts/testing/introduction/8.png)
+![6th function failing](/images/posts/testing/introduction/8.png)
 
 Apparently Typescript does like them.
 
@@ -346,7 +347,7 @@ export class Calculator {
 }
 ```
 
-![](/images/posts/testing/introduction/9.png)
+![6 passing tests](/images/posts/testing/introduction/9.png)
 
 Yay, not only in rounds numbers now, but our other test still works as expected.
 
@@ -366,7 +367,7 @@ This test looks different. Instead of passing a variable to `expect`, we are pas
 
 This test obviously fails:
 
-![](/images/posts/testing/introduction/10.png)
+![toThrow is failing](/images/posts/testing/introduction/10.png)
 
 Let's see our code before we change it:
 
@@ -416,7 +417,7 @@ export class Calculator {
 
 Much better and tests still pass:
 
-![](/images/posts/testing/introduction/9.png)
+![6 passing tests](/images/posts/testing/introduction/9.png)
 
 >NOTE: As mentioned, codesandbox doesn't manage this well and you may see a red X saying failed but all correct in the summary, that is fine.
 
@@ -452,11 +453,11 @@ export class Calculator {
 
 ```
 
-![](/images/posts/testing/introduction/11.png)
+![All tests pass](/images/posts/testing/introduction/11.png)
 
 And that is it! Congratulations, you just wrote your first test suite.
 
-### Conclusions of this example
+## Conclusions of this example
 
 Even when it is really really simple example. We already saw how we can address those problems I described earlier:
 
@@ -466,4 +467,4 @@ Maybe you won't notice it with this example, but with proper tests, you will sav
 
 Testing is your friend, and with little effort on it, will save us real pain.
 
-See you in the next section where we will dive into mock and spies to then test an Angular component from scratch.
+See you in the [next section](/blog/2021/07/unit-testing-spies-and-mocks/) where we will dive into mock and spies to then test an Angular component from scratch.
