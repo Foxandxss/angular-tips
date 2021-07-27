@@ -420,29 +420,6 @@ it('can print the recipes with celsius using a service', () => {
 
 `jest.spyOn` is the same as using `jest.fn` before but applied to an existing method. In this case it will also call the real service, but as we said before, it is small and simple so it doesn't really matter.
 
-File: `src/recipe.component.spec.ts`
-
-```typescript {hl_lines=[2, 15]}
-it('can print the recipes with celsius using a service', () => {
-  jest.spyOn(temperatureService, 'fahrenheitToCelsius');
-  component.fetchRecipes();
-
-  expect(component.recipes[0].cookTemperature).toBe(400);
-  expect(component.recipes[0].temperatureUnit).toBe('F');
-
-  const recipesInCelsius = component.printRecipesInCelsius();
-
-  const recipe = recipesInCelsius.pop();
-
-  expect(recipe.cookTemperature).not.toBe(400);
-  expect(recipe.temperatureUnit).toBe('C');
-  
-  expect(temperatureService.fahrenheitToCelsius).toHaveBeenCalledWith(400);
-});
-```
-
-![2 test pass](/images/posts/testing/mocks/3.png)
-
 ## Conclusions
 
 When doing unit testing, we need to mock out some of our dependencies so the focus of our testing is just the piece of code we are testing and not its dependencies.
