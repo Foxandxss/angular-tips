@@ -13,7 +13,7 @@ There are several ways to test our application:
 
 **Unit Test**: We test one piece of code in isolation. That means, without its dependencies. A component without its services or the other components used in the template. A service without other services, etc.
 
-**Integration Test**: Here we test that a several pieces works in conjuction. Some people agrees that testing that a component works with its template is considered an integration testing. But more on that in later parts.
+**Integration Test**: Here we test that a several pieces works in conjunction. Some people agrees that testing that a component works with its template is considered an integration testing. But more on that in later parts.
 
 **End to End**: In a end to end (e2e), we assert that our use cases works from start to finish. That means server calls, authentication and other stuff. We might talk about this in a different series.
 
@@ -130,7 +130,7 @@ Before we jump into "Obviously we need to pass an instance of both services" let
 
 What does this component? It **holds a list of recipes**, a method **that fetches the recipes** and a method **that returns the recipes in celsius**.
 
-That is it, it doesn't care where **how** the recipes are fetched in the service. It only cares that `recipeService.getRecipes()` returns a list of services. We have to assume that the service itself is tested. The component boundaries ends on "I call this method in the server that is supposed to return me recipes".
+That is it, it doesn't care where **how** the recipes are fetched in the service. It only cares that `recipeService.getRecipes()` returns a list of recipes. We have to assume that the service itself is tested. The component boundaries ends on "I call this method in the server that is supposed to return me recipes".
 
 With that said, if we pass an instance of `RecipeService` into our `component` we are coupling our tests with a real service. If that service calls a slow third party backend to fetch recipes, our tests won't be fast nor reliable.
 
@@ -419,6 +419,29 @@ it('can print the recipes with celsius using a service', () => {
 ![2 test pass](/images/posts/testing/mocks/3.png)
 
 `jest.spyOn` is the same as using `jest.fn` before but applied to an existing method. In this case it will also call the real service, but as we said before, it is small and simple so it doesn't really matter.
+
+File: `src/recipe.component.spec.ts`
+
+```typescript {hl_lines=[2, 15]}
+it('can print the recipes with celsius using a service', () => {
+  jest.spyOn(temperatureService, 'fahrenheitToCelsius');
+  component.fetchRecipes();
+
+  expect(component.recipes[0].cookTemperature).toBe(400);
+  expect(component.recipes[0].temperatureUnit).toBe('F');
+
+  const recipesInCelsius = component.printRecipesInCelsius();
+
+  const recipe = recipesInCelsius.pop();
+
+  expect(recipe.cookTemperature).not.toBe(400);
+  expect(recipe.temperatureUnit).toBe('C');
+  
+  expect(temperatureService.fahrenheitToCelsius).toHaveBeenCalledWith(400);
+});
+```
+
+![2 test pass](/images/posts/testing/mocks/3.png)
 
 ## Conclusions
 
