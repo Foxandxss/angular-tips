@@ -11,3 +11,4 @@ Here is the `Table of contents` of the `Unit testing with Angular` series:
 
 * [Introduction](/blog/2021/07/unit-testing-introduction)
 * [Spies and Mocks](/blog/2021/07/unit-testing-spies-and-mocks)
+* [Pipes](/blog/2021/09/unit-testing-pipes/)

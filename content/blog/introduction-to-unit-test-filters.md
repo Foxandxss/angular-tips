@@ -7,6 +7,8 @@ title = "Introduction to unit test: filters"
 
 +++
 
+**THIS TUTORIAL IS FOR ANGULAR.JS. FOR AN ANGULAR UNIT TESTING TUTORIAL GO [HERE](/blog/2021/07/unit-testing-toc)**
+
 Filters are the easiest components to test in `Angular`. That is why I decided to explain them first. Our first job is to decide what we want to achieve and in this case I decided to write a custom `uppercase` filter with options.
 
 What should our filter do? Our filter will uppercase the entire input or just part of it based on an input. Let's describe how we would like to use it here:
