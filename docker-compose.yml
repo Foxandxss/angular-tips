@@ -1,0 +1,23 @@
+version: '3.8'
+
+networks:
+  home:
+    external: true
+services:
+  web:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    image: hugo-angulartips-image
+    container_name: hugo-angulartips
+    restart: unless-stopped
+    labels:
+      - traefik.http.routers.angular-tips.rule=Host(`angular-tips.com`)
+      - traefik.http.routers.angular-tips.tls=true
+      - traefik.http.routers.angular-tips.tls.certresolver=lets-encrypt
+      - traefik.port=80
+    ports:
+      - 80
+    networks:
+      - home
+      
